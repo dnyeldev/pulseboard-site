@@ -12,870 +12,110 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --red: #FF5236;
-            --red-dark: #CC4229;
-            --bg: #000000;
-            --bg-elevated: #0B0B0B;
-            --bg-card: #111111;
-            --border: #1C1C1E;
-            --text: #FFFFFF;
-            --text-secondary: #888888;
-            --text-tertiary: #555555;
-            --serif: 'Instrument Serif', Georgia, serif;
-            --sans: 'DM Sans', -apple-system, sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            overflow-x: hidden;
-        }
-
-        /* ====== NAV ====== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(0,0,0,0.8);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .nav-logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .nav-logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .nav-logo span {
-            font-family: var(--sans);
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text);
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s;
-            letter-spacing: -0.01em;
-        }
-
-        .nav-links a:hover { color: var(--text); }
-
-        .nav-cta {
-            background: var(--red) !important;
-            color: var(--text) !important;
-            padding: 10px 20px;
-            border-radius: 999px;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-            transition: all 0.3s !important;
-        }
-
-        .nav-cta:hover {
-            background: var(--red-dark) !important;
-            transform: translateY(-1px);
-        }
-
-        /* ====== HERO ====== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255,82,54,0.12) 0%, rgba(255,82,54,0.03) 40%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,82,54,0.08);
-            border: 1px solid rgba(255,82,54,0.2);
-            border-radius: 999px;
-            padding: 8px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--red);
-            margin-bottom: 40px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        .hero-badge .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--red);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.4s;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--red);
-        }
-
-        .hero-sub {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-secondary);
-            max-width: 540px;
-            line-height: 1.6;
-            margin-bottom: 48px;
-            letter-spacing: -0.01em;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.8s;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--red);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 999px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: var(--red-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(255,82,54,0.3);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: white;
-            padding: 16px 32px;
-            border-radius: 999px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            transform: translateY(-2px);
-        }
-
-        .hero-phone {
-            margin-top: 80px;
-            position: relative;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 1s;
-        }
-
-        .phone-frame {
-            width: 280px;
-            height: 580px;
-            border-radius: 40px;
-            border: 2px solid var(--border);
-            overflow: hidden;
-            position: relative;
-            box-shadow:
-                0 0 0 1px rgba(255,255,255,0.05),
-                0 20px 60px rgba(0,0,0,0.5),
-                0 0 120px rgba(255,82,54,0.08);
-        }
-
-        .phone-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-        }
-
-        /* ====== SCROLL ANIMATIONS ====== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ====== TICKER ====== */
-        .ticker-section {
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ticker-track {
-            display: flex;
-            gap: 48px;
-            animation: scroll-ticker 30s linear infinite;
-            width: max-content;
-        }
-
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            white-space: nowrap;
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .ticker-item .source-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--red);
-            opacity: 0.5;
-        }
-
-        @keyframes scroll-ticker {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* ====== SECTION STYLES ====== */
-        section {
-            padding: 120px 24px;
-        }
-
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--red);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-        }
-
-        .section-desc {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            max-width: 560px;
-        }
-
-        /* ====== FEATURES ====== */
-        .features-section {
-            background: var(--bg);
-        }
-
-        .features-header {
-            margin-bottom: 80px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .feature-card {
-            background: var(--bg);
-            padding: 40px 32px;
-            transition: all 0.4s;
-            position: relative;
-        }
-
-        .feature-card:hover {
-            background: var(--bg-elevated);
-        }
-
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            right: 20%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,82,54,0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .feature-card:hover::after {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,82,54,0.08);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--red);
-            font-size: 18px;
-        }
-
-        .feature-card h3 {
-            font-family: var(--sans);
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* ====== PULSE AI ====== */
-        .pulse-section {
-            background: var(--bg-elevated);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pulse-section::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,82,54,0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .pulse-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .pulse-chat {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .chat-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .chat-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .chat-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .chat-name {
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .chat-status {
-            font-size: 12px;
-            color: #4ADE80;
-        }
-
-        .chat-bubble {
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            max-width: 85%;
-        }
-
-        .chat-user {
-            background: var(--red);
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 4px;
-        }
-
-        .chat-ai {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-chips {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 16px;
-        }
-
-        .chat-chip {
-            background: rgba(255,82,54,0.08);
-            border: 1px solid rgba(255,82,54,0.15);
-            border-radius: 999px;
-            padding: 6px 14px;
-            font-size: 12px;
-            color: var(--red);
-            font-weight: 500;
-        }
-
-        /* ====== NUMBERS ====== */
-        .numbers-section {
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 80px 24px;
-        }
-
-        .numbers-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .number-item h3 {
-            font-family: var(--serif);
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--red);
-            margin-bottom: 8px;
-        }
-
-        .number-item p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* ====== PRO ====== */
-        .pro-section {
-            background: var(--bg);
-        }
-
-        .pro-card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 64px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pro-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-        }
-
-        .pro-card::after {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 200px;
-            background: radial-gradient(ellipse, rgba(255,82,54,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .pro-badge {
-            display: inline-block;
-            background: var(--red);
-            color: white;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            border-radius: 999px;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pro-card .section-title {
-            position: relative;
-            z-index: 1;
-        }
-
-        .pro-pricing {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .price-option {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px 36px;
-            flex: 1;
-            max-width: 240px;
-            transition: all 0.3s;
-        }
-
-        .price-option:hover {
-            border-color: rgba(255,82,54,0.3);
-        }
-
-        .price-option.popular {
-            border-color: var(--red);
-            position: relative;
-        }
-
-        .price-option.popular::before {
-            content: 'SAVE 44%';
-            position: absolute;
-            top: -10px;
-            right: 16px;
-            background: var(--red);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            padding: 3px 10px;
-            border-radius: 999px;
-        }
-
-        .price-period {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 8px;
-        }
-
-        .price-amount {
-            font-family: var(--serif);
-            font-size: 36px;
-            margin-bottom: 4px;
-        }
-
-        .price-unit {
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        /* ====== CTA ====== */
-        .cta-section {
-            text-align: center;
-            padding: 120px 24px 80px;
-        }
-
-        .cta-section .section-title {
-            margin-bottom: 16px;
-        }
-
-        .cta-section .section-desc {
-            margin: 0 auto 48px;
-            text-align: center;
-        }
-
-        .store-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .store-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 14px 28px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.3s;
-        }
-
-        .store-btn:hover {
-            border-color: var(--text-secondary);
-            transform: translateY(-2px);
-        }
-
-        .store-btn svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .store-btn-text {
-            text-align: left;
-        }
-
-        .store-btn-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .store-btn-name {
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        /* ====== FOOTER ====== */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 24px;
-        }
-
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .footer-brand {
-            font-weight: 700;
-            font-size: 15px;
-            color: var(--text);
-        }
-
-        .footer-tagline {
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            font-size: 13px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--text); }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width: 768px) {
-            nav { padding: 16px 20px; }
-            .nav-links { display: none; }
-
-            section { padding: 80px 20px; }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pulse-layout {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .numbers-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-
-            .pro-card { padding: 40px 24px; }
-
-            .pro-pricing {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .price-option {
-                max-width: 100%;
-                width: 100%;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-
-            .footer-left {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .phone-frame {
-                width: 240px;
-                height: 500px;
-            }
-        }
+        :root{--red:#FF5236;--red-dark:#CC4229;--bg:#000;--bg-elevated:#0B0B0B;--bg-card:#111;--border:#1C1C1E;--text:#FFF;--text-secondary:#888;--text-tertiary:#555;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
+        .nav-logo{display:flex;align-items:center;text-decoration:none}
+        .nav-links{display:flex;gap:32px;align-items:center}
+        .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{background:var(--red)!important;color:var(--text)!important;padding:10px 20px;border-radius:999px;font-weight:600!important;transition:all .3s!important}
+        .nav-cta:hover{background:var(--red-dark)!important;transform:translateY(-1px)}
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
+        .hero::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,82,54,.12) 0%,rgba(255,82,54,.03) 40%,transparent 70%);pointer-events:none}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,82,54,.08);border:1px solid rgba(255,82,54,.2);border-radius:999px;padding:8px 20px;font-size:13px;font-weight:600;color:var(--red);margin-bottom:40px;letter-spacing:.05em;text-transform:uppercase;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:.2s}
+        .hero-badge .dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse-dot 2s infinite}
+        @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+        .hero h1{font-family:var(--serif);font-size:clamp(48px,8vw,96px);font-weight:400;line-height:1;letter-spacing:-.03em;margin-bottom:24px;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:.4s}
+        .hero h1 em{font-style:italic;color:var(--red)}
+        .hero-sub{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:540px;line-height:1.6;margin-bottom:48px;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:.6s}
+        .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:.8s}
+        .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:16px 32px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;transition:all .3s}
+        .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,82,54,.3)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;padding:16px 32px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;transition:all .3s;border:1px solid var(--border)}
+        .btn-secondary:hover{border-color:var(--text-secondary);transform:translateY(-2px)}
+        .hero-phone{margin-top:80px;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:1s}
+        .hero-phone img{width:280px;border-radius:32px;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 120px rgba(255,82,54,.08)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        .ticker-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden}
+        .ticker-track{display:flex;gap:48px;animation:scroll-ticker 30s linear infinite;width:max-content}
+        .ticker-item{display:flex;align-items:center;gap:12px;white-space:nowrap;font-size:14px;color:var(--text-secondary);font-weight:500}
+        .ticker-item .source-dot{width:6px;height:6px;border-radius:50%;background:var(--red);opacity:.5}
+        @keyframes scroll-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        section{padding:120px 24px}
+        .section-container{max-width:1100px;margin:0 auto}
+        .section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--red);margin-bottom:16px}
+        .section-title{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.1;letter-spacing:-.03em;margin-bottom:20px}
+        .section-desc{font-size:18px;color:var(--text-secondary);line-height:1.6;max-width:560px}
+        .features-header{margin-bottom:80px}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+        .feature-card{background:var(--bg);padding:40px 32px;transition:all .4s;position:relative}
+        .feature-card:hover{background:var(--bg-elevated)}
+        .feature-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,54,.2),transparent);opacity:0;transition:opacity .4s}
+        .feature-card:hover::after{opacity:1}
+        .feature-icon{width:40px;height:40px;background:rgba(255,82,54,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:18px}
+        .feature-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+        .feature-card p{font-size:14px;color:var(--text-secondary);line-height:1.6}
+        .pulse-section{background:var(--bg-elevated);position:relative;overflow:hidden}
+        .pulse-section::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,82,54,.06) 0%,transparent 70%);pointer-events:none}
+        .pulse-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .pulse-chat{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .chat-header{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+        .chat-avatar{width:32px;height:32px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center}
+        .chat-name{font-weight:700;font-size:15px}
+        .chat-status{font-size:12px;color:#4ADE80}
+        .chat-bubble{padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5;margin-bottom:12px;max-width:85%}
+        .chat-user{background:var(--red);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+        .chat-ai{background:var(--bg-card);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:4px}
+        .chat-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+        .chat-chip{background:rgba(255,82,54,.08);border:1px solid rgba(255,82,54,.15);border-radius:999px;padding:6px 14px;font-size:12px;color:var(--red);font-weight:500}
+        .pulse-feature{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .pulse-check{width:24px;height:24px;border-radius:6px;background:rgba(255,82,54,.1);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:12px;flex-shrink:0}
+        .pulse-feature span{font-size:15px;color:var(--text-secondary)}
+        .numbers-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px}
+        .numbers-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+        .number-item h3{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--red);margin-bottom:8px}
+        .number-item p{font-size:14px;color:var(--text-secondary);font-weight:500}
+        .pro-card{max-width:800px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden}
+        .pro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+        .pro-card::after{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(255,82,54,.1) 0%,transparent 70%);pointer-events:none}
+        .pro-badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:999px;margin-bottom:28px;position:relative;z-index:1}
+        .pro-card .section-title{position:relative;z-index:1}
+        .pro-pricing{display:flex;gap:20px;justify-content:center;margin-top:40px;position:relative;z-index:1}
+        .price-option{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 36px;flex:1;max-width:240px;transition:all .3s}
+        .price-option:hover{border-color:rgba(255,82,54,.3)}
+        .price-option.popular{border-color:var(--red);position:relative}
+        .price-option.popular::before{content:'SAVE 44%';position:absolute;top:-10px;right:16px;background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;padding:3px 10px;border-radius:999px}
+        .price-period{font-size:13px;color:var(--text-secondary);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+        .price-amount{font-family:var(--serif);font-size:36px;margin-bottom:4px}
+        .price-unit{font-size:13px;color:var(--text-tertiary)}
+        .cta-section{text-align:center;padding:120px 24px 80px}
+        .cta-section .section-desc{margin:0 auto 48px;text-align:center}
+        .store-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+        .store-btn{display:inline-flex;align-items:center;gap:12px;background:var(--bg-card);border:1px solid var(--border);padding:14px 28px;border-radius:14px;text-decoration:none;color:var(--text);transition:all .3s}
+        .store-btn:hover{border-color:var(--text-secondary);transform:translateY(-2px)}
+        .store-btn svg{width:28px;height:28px}
+        .store-btn-text{text-align:left}
+        .store-btn-label{font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.06em}
+        .store-btn-name{font-size:17px;font-weight:700}
+        footer{border-top:1px solid var(--border);padding:40px 24px}
+        .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+        .footer-left{display:flex;align-items:center;gap:24px}
+        .footer-tagline{font-size:13px;color:var(--text-tertiary)}
+        .footer-links{display:flex;gap:24px}
+        .footer-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color .3s}
+        .footer-links a:hover{color:var(--text)}
+        @media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}section{padding:80px 20px}.features-grid{grid-template-columns:1fr}.pulse-layout{grid-template-columns:1fr;gap:48px}.numbers-grid{grid-template-columns:repeat(2,1fr);gap:32px}.pro-card{padding:40px 24px}.pro-pricing{flex-direction:column;align-items:center}.price-option{max-width:100%;width:100%}.footer-inner{flex-direction:column;gap:20px;text-align:center}.footer-left{flex-direction:column;gap:8px}.hero-phone img{width:240px}}
     </style>
 </head>
 <body>
-
-    <!-- NAV -->
     <nav>
         <a href="#" class="nav-logo">
-            <svg width="160" height="24" viewBox="0 0 639 98" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 95.625V5.4375H38.8125C59 5.4375 72 18.0625 72 37.375V37.5C72 56.8125 59 69.1875 38.8125 69.1875H22.9375V95.625H0ZM33.3125 23H22.9375V51.9375H33.3125C43.0625 51.9375 48.8125 46.875 48.8125 37.5V37.375C48.8125 28 43.0625 23 33.3125 23ZM103.625 97.25C88.1875 97.25 80.25 87.6875 80.25 71V26.0625H102.375V66.0625C102.375 74.5 105.625 79.1875 113.125 79.1875C120.625 79.1875 124.75 73.75 124.75 65.8125V26.0625H146.875V95.625H124.75V84.75H123.562C120.562 92.375 113.438 97.25 103.625 97.25ZM158.75 95.625V0H180.875V95.625H158.75ZM222.312 97.25C201.688 97.25 190.875 88.25 189.5 76.125V75.6875H211L211.125 76.0625C212.438 79.625 215.938 82.3125 222.375 82.3125C228.312 82.3125 232.125 80 232.125 76.25V76.1875C232.125 72.9375 229.75 71.0625 223.438 69.75L211.438 67.375C198 64.6875 191.125 57.6875 191.125 47.0625V47C191.125 33.125 203 24.4375 221.688 24.4375C241.812 24.4375 251.938 34.4375 252.312 45.5625V45.875H232.062L231.938 45.4375C231.25 42.5625 227.812 39.3125 221.688 39.3125C216.188 39.3125 212.5 41.625 212.5 45.5V45.625C212.5 48.75 214.625 50.5625 221.25 51.9375L233.25 54.3125C247.625 57.1875 254.188 63.0625 254.188 73.5V73.5625C254.188 88 241.188 97.25 222.312 97.25ZM293.812 97.25C272 97.25 258.688 83.4375 258.688 60.875V60.8125C258.688 38.375 272 24.4375 293 24.4375C313.938 24.4375 327.25 38.1875 327.25 59.4375V65.8125H280.438C280.625 75.75 285.75 81.5 294.25 81.5C301.625 81.5 305.438 77.25 306.438 75.4375L306.562 75.1875L326.812 75.125L326.625 75.875C324.625 84.1875 316.125 97.25 293.812 97.25ZM293.5 40.1875C286.688 40.1875 281.75 44.75 280.688 52.9375H306.312C305.25 44.625 300.375 40.1875 293.5 40.1875Z" fill="#FF5236"/>
-                <path d="M338.062 95.625V5.4375H367.625C384.312 5.4375 394.75 14.1875 394.75 27.375V27.5C394.75 38.1875 387.75 46.5625 377 48.5625V48.9375C389.25 50.5 399.5 58.5 399.5 71.625V71.75C399.5 86.375 388.938 95.625 367.812 95.625H338.062ZM366.875 9.9375H343V47H366.062C380.438 47 389.75 39.8125 389.75 28.0625V27.9375C389.75 17 381 9.9375 366.875 9.9375ZM366.938 51.4375H343V91.125H367.25C385.688 91.125 394.438 83.625 394.438 71.625V71.5C394.438 59 383.562 51.4375 366.938 51.4375ZM438.312 96.6875C420 96.6875 408.312 83.25 408.312 62.0625V61.9375C408.312 40.6875 420 27.3125 438.312 27.3125C456.625 27.3125 468.312 40.6875 468.312 61.9375V62.0625C468.312 83.25 456.625 96.6875 438.312 96.6875ZM438.312 92.25C453.625 92.25 463.375 80.4375 463.375 62.0625V61.9375C463.375 43.5 453.625 31.6875 438.312 31.6875C422.938 31.6875 413.25 43.4375 413.25 61.9375V62.0625C413.25 80.5 422.938 92.25 438.312 92.25ZM499.75 96.6875C486.562 96.6875 477.312 89 477.312 77.4375V77.3125C477.312 65.9375 485.688 59.3125 501.188 58.1875L524.375 56.4375V49.875C524.375 38 517.125 31.6875 505.188 31.6875C494.625 31.6875 486.75 36.375 484.875 44.875V45H480V44.8125C481.812 33.875 491.812 27.3125 505.312 27.3125C520.125 27.3125 529.188 35.3125 529.188 49.8125V95.625H524.375V81.875H523.875C520.188 90.9375 510.938 96.6875 499.75 96.6875ZM482.188 77.375C482.188 86.3125 489.688 92.3125 500.375 92.3125C513.812 92.3125 524.375 82.75 524.375 70.5625V60.5625L501.938 62.25C488.938 63.25 482.188 68.4375 482.188 77.25V77.375ZM545 95.625V28.3125H549.812V40.875H550.312C553.062 32.375 559.938 27.3125 569 27.3125C572 27.3125 574.188 27.5625 576.5 28.25V33.0625C573.938 32.25 571.562 31.875 568.688 31.875C558 31.875 549.812 41.0625 549.812 53.3125V95.625H545ZM608.5 96.6875C591.438 96.6875 579.688 82.5 579.688 62.0625V61.9375C579.688 41.5 591.5 27.3125 608.5 27.3125C619.875 27.3125 629.438 34.125 633.25 44.8125H633.688V1.5H638.5V95.625H633.688V78.6875H633.25C629.5 89.6875 620.125 96.6875 608.5 96.6875ZM609.188 92.25C623.75 92.25 633.75 80 633.75 62.0625V61.9375C633.75 44 623.75 31.6875 609.188 31.6875C594.562 31.6875 584.625 44 584.625 61.9375V62.0625C584.625 80 594.562 92.25 609.188 92.25Z" fill="white"/>
-            </svg>
+            <svg width="160" height="24" viewBox="0 0 639 98" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 95.625V5.4375H38.8125C59 5.4375 72 18.0625 72 37.375V37.5C72 56.8125 59 69.1875 38.8125 69.1875H22.9375V95.625H0ZM33.3125 23H22.9375V51.9375H33.3125C43.0625 51.9375 48.8125 46.875 48.8125 37.5V37.375C48.8125 28 43.0625 23 33.3125 23ZM103.625 97.25C88.1875 97.25 80.25 87.6875 80.25 71V26.0625H102.375V66.0625C102.375 74.5 105.625 79.1875 113.125 79.1875C120.625 79.1875 124.75 73.75 124.75 65.8125V26.0625H146.875V95.625H124.75V84.75H123.562C120.562 92.375 113.438 97.25 103.625 97.25ZM158.75 95.625V0H180.875V95.625H158.75ZM222.312 97.25C201.688 97.25 190.875 88.25 189.5 76.125V75.6875H211L211.125 76.0625C212.438 79.625 215.938 82.3125 222.375 82.3125C228.312 82.3125 232.125 80 232.125 76.25V76.1875C232.125 72.9375 229.75 71.0625 223.438 69.75L211.438 67.375C198 64.6875 191.125 57.6875 191.125 47.0625V47C191.125 33.125 203 24.4375 221.688 24.4375C241.812 24.4375 251.938 34.4375 252.312 45.5625V45.875H232.062L231.938 45.4375C231.25 42.5625 227.812 39.3125 221.688 39.3125C216.188 39.3125 212.5 41.625 212.5 45.5V45.625C212.5 48.75 214.625 50.5625 221.25 51.9375L233.25 54.3125C247.625 57.1875 254.188 63.0625 254.188 73.5V73.5625C254.188 88 241.188 97.25 222.312 97.25ZM293.812 97.25C272 97.25 258.688 83.4375 258.688 60.875V60.8125C258.688 38.375 272 24.4375 293 24.4375C313.938 24.4375 327.25 38.1875 327.25 59.4375V65.8125H280.438C280.625 75.75 285.75 81.5 294.25 81.5C301.625 81.5 305.438 77.25 306.438 75.4375L306.562 75.1875L326.812 75.125L326.625 75.875C324.625 84.1875 316.125 97.25 293.812 97.25ZM293.5 40.1875C286.688 40.1875 281.75 44.75 280.688 52.9375H306.312C305.25 44.625 300.375 40.1875 293.5 40.1875Z" fill="#FF5236"/><path d="M338.062 95.625V5.4375H367.625C384.312 5.4375 394.75 14.1875 394.75 27.375V27.5C394.75 38.1875 387.75 46.5625 377 48.5625V48.9375C389.25 50.5 399.5 58.5 399.5 71.625V71.75C399.5 86.375 388.938 95.625 367.812 95.625H338.062ZM366.875 9.9375H343V47H366.062C380.438 47 389.75 39.8125 389.75 28.0625V27.9375C389.75 17 381 9.9375 366.875 9.9375ZM366.938 51.4375H343V91.125H367.25C385.688 91.125 394.438 83.625 394.438 71.625V71.5C394.438 59 383.562 51.4375 366.938 51.4375ZM438.312 96.6875C420 96.6875 408.312 83.25 408.312 62.0625V61.9375C408.312 40.6875 420 27.3125 438.312 27.3125C456.625 27.3125 468.312 40.6875 468.312 61.9375V62.0625C468.312 83.25 456.625 96.6875 438.312 96.6875ZM438.312 92.25C453.625 92.25 463.375 80.4375 463.375 62.0625V61.9375C463.375 43.5 453.625 31.6875 438.312 31.6875C422.938 31.6875 413.25 43.4375 413.25 61.9375V62.0625C413.25 80.5 422.938 92.25 438.312 92.25ZM499.75 96.6875C486.562 96.6875 477.312 89 477.312 77.4375V77.3125C477.312 65.9375 485.688 59.3125 501.188 58.1875L524.375 56.4375V49.875C524.375 38 517.125 31.6875 505.188 31.6875C494.625 31.6875 486.75 36.375 484.875 44.875V45H480V44.8125C481.812 33.875 491.812 27.3125 505.312 27.3125C520.125 27.3125 529.188 35.3125 529.188 49.8125V95.625H524.375V81.875H523.875C520.188 90.9375 510.938 96.6875 499.75 96.6875ZM482.188 77.375C482.188 86.3125 489.688 92.3125 500.375 92.3125C513.812 92.3125 524.375 82.75 524.375 70.5625V60.5625L501.938 62.25C488.938 63.25 482.188 68.4375 482.188 77.25V77.375ZM545 95.625V28.3125H549.812V40.875H550.312C553.062 32.375 559.938 27.3125 569 27.3125C572 27.3125 574.188 27.5625 576.5 28.25V33.0625C573.938 32.25 571.562 31.875 568.688 31.875C558 31.875 549.812 41.0625 549.812 53.3125V95.625H545ZM608.5 96.6875C591.438 96.6875 579.688 82.5 579.688 62.0625V61.9375C579.688 41.5 591.5 27.3125 608.5 27.3125C619.875 27.3125 629.438 34.125 633.25 44.8125H633.688V1.5H638.5V95.625H633.688V78.6875H633.25C629.5 89.6875 620.125 96.6875 608.5 96.6875ZM609.188 92.25C623.75 92.25 633.75 80 633.75 62.0625V61.9375C633.75 44 623.75 31.6875 609.188 31.6875C594.562 31.6875 584.625 44 584.625 61.9375V62.0625C584.625 80 594.562 92.25 609.188 92.25Z" fill="white"/></svg>
         </a>
         <div class="nav-links">
             <a href="#features">Features</a>
@@ -884,270 +124,91 @@
             <a href="#download" class="nav-cta">Download</a>
         </div>
     </nav>
-
-    <!-- HERO -->
     <section class="hero">
-        <div class="hero-badge">
-            <span class="dot"></span>
-            Live Philippine Intelligence
-        </div>
+        <div class="hero-badge"><span class="dot"></span>Live Philippine Intelligence</div>
         <h1>Know what <em>matters.</em></h1>
         <p class="hero-sub">Real-time intelligence for Filipinos. Weather, news, alerts, fuel prices, earthquakes, and AI — everything that matters, nothing that doesn't.</p>
         <div class="hero-buttons">
-            <a href="#download" class="btn-primary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                Download Free
-            </a>
+            <a href="#download" class="btn-primary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Free</a>
             <a href="#features" class="btn-secondary">See Features</a>
         </div>
-
-        <div class="hero-phone">
-            <img src="dashboard.png" alt="PulseBoard Dashboard" style="width: 280px; border-radius: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 120px rgba(255,82,54,0.08);">
-        </div>
+        <div class="hero-phone"><img src="dashboard.png" alt="PulseBoard Dashboard"></div>
     </section>
-
-    <!-- TICKER -->
-    <div class="ticker-section">
-        <div class="ticker-track">
-            <div class="ticker-item"><span class="source-dot"></span>PAGASA Weather</div>
-            <div class="ticker-item"><span class="source-dot"></span>NDRRMC Alerts</div>
-            <div class="ticker-item"><span class="source-dot"></span>PHIVOLCS Seismic</div>
-            <div class="ticker-item"><span class="source-dot"></span>DOE Fuel Prices</div>
-            <div class="ticker-item"><span class="source-dot"></span>Yahoo Finance</div>
-            <div class="ticker-item"><span class="source-dot"></span>Rappler</div>
-            <div class="ticker-item"><span class="source-dot"></span>GMA News</div>
-            <div class="ticker-item"><span class="source-dot"></span>Inquirer</div>
-            <div class="ticker-item"><span class="source-dot"></span>ABS-CBN</div>
-            <div class="ticker-item"><span class="source-dot"></span>Manila Bulletin</div>
-            <div class="ticker-item"><span class="source-dot"></span>GDACS Global</div>
-            <div class="ticker-item"><span class="source-dot"></span>USGS Earthquake</div>
-            <div class="ticker-item"><span class="source-dot"></span>OpenSky Flights</div>
-            <div class="ticker-item"><span class="source-dot"></span>ReliefWeb</div>
-            <!-- duplicate for seamless loop -->
-            <div class="ticker-item"><span class="source-dot"></span>PAGASA Weather</div>
-            <div class="ticker-item"><span class="source-dot"></span>NDRRMC Alerts</div>
-            <div class="ticker-item"><span class="source-dot"></span>PHIVOLCS Seismic</div>
-            <div class="ticker-item"><span class="source-dot"></span>DOE Fuel Prices</div>
-            <div class="ticker-item"><span class="source-dot"></span>Yahoo Finance</div>
-            <div class="ticker-item"><span class="source-dot"></span>Rappler</div>
-            <div class="ticker-item"><span class="source-dot"></span>GMA News</div>
-            <div class="ticker-item"><span class="source-dot"></span>Inquirer</div>
-            <div class="ticker-item"><span class="source-dot"></span>ABS-CBN</div>
-            <div class="ticker-item"><span class="source-dot"></span>Manila Bulletin</div>
-            <div class="ticker-item"><span class="source-dot"></span>GDACS Global</div>
-            <div class="ticker-item"><span class="source-dot"></span>USGS Earthquake</div>
-            <div class="ticker-item"><span class="source-dot"></span>OpenSky Flights</div>
-            <div class="ticker-item"><span class="source-dot"></span>ReliefWeb</div>
+    <div class="ticker-section"><div class="ticker-track">
+        <div class="ticker-item"><span class="source-dot"></span>PAGASA Weather</div><div class="ticker-item"><span class="source-dot"></span>NDRRMC Alerts</div><div class="ticker-item"><span class="source-dot"></span>PHIVOLCS Seismic</div><div class="ticker-item"><span class="source-dot"></span>DOE Fuel Prices</div><div class="ticker-item"><span class="source-dot"></span>Yahoo Finance</div><div class="ticker-item"><span class="source-dot"></span>Rappler</div><div class="ticker-item"><span class="source-dot"></span>GMA News</div><div class="ticker-item"><span class="source-dot"></span>Inquirer</div><div class="ticker-item"><span class="source-dot"></span>ABS-CBN</div><div class="ticker-item"><span class="source-dot"></span>Manila Bulletin</div><div class="ticker-item"><span class="source-dot"></span>GDACS Global</div><div class="ticker-item"><span class="source-dot"></span>USGS Earthquake</div><div class="ticker-item"><span class="source-dot"></span>OpenSky Flights</div><div class="ticker-item"><span class="source-dot"></span>ReliefWeb</div>
+        <div class="ticker-item"><span class="source-dot"></span>PAGASA Weather</div><div class="ticker-item"><span class="source-dot"></span>NDRRMC Alerts</div><div class="ticker-item"><span class="source-dot"></span>PHIVOLCS Seismic</div><div class="ticker-item"><span class="source-dot"></span>DOE Fuel Prices</div><div class="ticker-item"><span class="source-dot"></span>Yahoo Finance</div><div class="ticker-item"><span class="source-dot"></span>Rappler</div><div class="ticker-item"><span class="source-dot"></span>GMA News</div><div class="ticker-item"><span class="source-dot"></span>Inquirer</div><div class="ticker-item"><span class="source-dot"></span>ABS-CBN</div><div class="ticker-item"><span class="source-dot"></span>Manila Bulletin</div><div class="ticker-item"><span class="source-dot"></span>GDACS Global</div><div class="ticker-item"><span class="source-dot"></span>USGS Earthquake</div><div class="ticker-item"><span class="source-dot"></span>OpenSky Flights</div><div class="ticker-item"><span class="source-dot"></span>ReliefWeb</div>
+    </div></div>
+    <section id="features"><div class="section-container">
+        <div class="features-header reveal"><div class="section-label">Intelligence Widgets</div><div class="section-title">Everything the Philippines<br>needs. One dashboard.</div><p class="section-desc">12 customizable widgets pulling live data from official Philippine and global sources. Toggle what matters, hide what doesn't.</p></div>
+        <div class="features-grid reveal">
+            <div class="feature-card"><div class="feature-icon">☀️</div><h3>Weather</h3><p>Live forecasts with human-readable advisories. "No rain today" — not raw data.</p></div>
+            <div class="feature-card"><div class="feature-icon">📰</div><h3>News</h3><p>Top stories from 5 Philippine sources, filtered to the last 8 hours. Only what's current.</p></div>
+            <div class="feature-card"><div class="feature-icon">🚨</div><h3>Active Alerts</h3><p>PAGASA, NDRRMC, GDACS, and breaking news alerts with category filters.</p></div>
+            <div class="feature-card"><div class="feature-icon">⛽</div><h3>Fuel Prices</h3><p>DOE price updates with per-brand filtering and price trend sparkline charts.</p></div>
+            <div class="feature-card"><div class="feature-icon">🌋</div><h3>Earthquakes</h3><p>Live seismic data from PHIVOLCS and USGS, filtered to the Philippines.</p></div>
+            <div class="feature-card"><div class="feature-icon">📈</div><h3>Market Radar</h3><p>Key market indices and stock data at a glance via Yahoo Finance.</p></div>
+            <div class="feature-card"><div class="feature-icon">✈️</div><h3>Flights</h3><p>Real-time flight tracking over Philippine airspace via OpenSky Network.</p></div>
+            <div class="feature-card"><div class="feature-icon">🛣️</div><h3>Toll Fees</h3><p>Updated toll rates for major expressways with price change alerts.</p></div>
+            <div class="feature-card"><div class="feature-icon">💰</div><h3>Cost of Living</h3><p>Daily impact summaries showing what's getting expensive and why.</p></div>
         </div>
-    </div>
-
-    <!-- FEATURES -->
-    <section class="features-section" id="features">
-        <div class="section-container">
-            <div class="features-header reveal">
-                <div class="section-label">Intelligence Widgets</div>
-                <div class="section-title">Everything the Philippines<br>needs. One dashboard.</div>
-                <p class="section-desc">12 customizable widgets pulling live data from official Philippine and global sources. Toggle what matters, hide what doesn't.</p>
-            </div>
-            <div class="features-grid reveal">
-                <div class="feature-card">
-                    <div class="feature-icon">☀️</div>
-                    <h3>Weather</h3>
-                    <p>Live forecasts with human-readable advisories. "No rain today" — not raw data.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📰</div>
-                    <h3>News</h3>
-                    <p>Top stories from 5 Philippine sources, filtered to the last 8 hours. Only what's current.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚨</div>
-                    <h3>Active Alerts</h3>
-                    <p>PAGASA, NDRRMC, GDACS, and breaking news alerts with category filters.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⛽</div>
-                    <h3>Fuel Prices</h3>
-                    <p>DOE price updates with per-brand filtering and price trend sparkline charts.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌋</div>
-                    <h3>Earthquakes</h3>
-                    <p>Live seismic data from PHIVOLCS and USGS, filtered to the Philippines.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Market Radar</h3>
-                    <p>Key market indices and stock data at a glance via Yahoo Finance.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✈️</div>
-                    <h3>Flights</h3>
-                    <p>Real-time flight tracking over Philippine airspace via OpenSky Network.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛣️</div>
-                    <h3>Toll Fees</h3>
-                    <p>Updated toll rates for major expressways with price change alerts.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Cost of Living</h3>
-                    <p>Daily impact summaries showing what's getting expensive and why.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PULSE AI -->
-    <section class="pulse-section" id="pulse">
-        <div class="section-container">
-            <div class="pulse-layout">
-                <div class="reveal">
-                    <div class="section-label">Pulse AI</div>
-                    <div class="section-title">Ask anything about the Philippines.</div>
-                    <p class="section-desc" style="margin-bottom: 32px;">Pulse reads your live dashboard data — weather, alerts, fuel, news, earthquakes — and gives concise, context-aware answers. Not generic AI. Real Philippine intelligence.</p>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="width: 24px; height: 24px; border-radius: 6px; background: rgba(255,82,54,0.1); display: flex; align-items: center; justify-content: center; color: var(--red); font-size: 12px; flex-shrink: 0;">✓</div>
-                            <span style="font-size: 15px; color: var(--text-secondary);">Reads your live widget data for accurate answers</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="width: 24px; height: 24px; border-radius: 6px; background: rgba(255,82,54,0.1); display: flex; align-items: center; justify-content: center; color: var(--red); font-size: 12px; flex-shrink: 0;">✓</div>
-                            <span style="font-size: 15px; color: var(--text-secondary);">Warm, direct, Filipino-English tone</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="width: 24px; height: 24px; border-radius: 6px; background: rgba(255,82,54,0.1); display: flex; align-items: center; justify-content: center; color: var(--red); font-size: 12px; flex-shrink: 0;">✓</div>
-                            <span style="font-size: 15px; color: var(--text-secondary);">Follow-up suggestions to dig deeper</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal" style="transition-delay: 0.2s;">
-                    <div class="pulse-chat">
-                        <div class="chat-header">
-                            <div class="chat-avatar">
-                                <img src="logo1024.jpg" alt="Pulse">
-                            </div>
-                            <div>
-                                <div class="chat-name">Pulse</div>
-                                <div class="chat-status">● Online</div>
-                            </div>
-                        </div>
-                        <div class="chat-bubble chat-user">Should I bring an umbrella today?</div>
-                        <div class="chat-bubble chat-ai">No need! It's 32° and clear skies in Quezon City right now. PAGASA shows no rain expected until Thursday. You're good. ☀️</div>
-                        <div class="chat-bubble chat-user">What about fuel, did prices go up?</div>
-                        <div class="chat-bubble chat-ai">Diesel went up ₱0.80/L this week. Shell is cheapest right now at ₱65.40/L in Metro Manila. Petron and Caltex are at ₱66.10.</div>
-                        <div class="chat-chips">
-                            <div class="chat-chip">Show price trends</div>
-                            <div class="chat-chip">Any alerts nearby?</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NUMBERS -->
-    <div class="numbers-section">
-        <div class="numbers-grid reveal">
-            <div class="number-item">
-                <h3>12</h3>
-                <p>Intelligence Widgets</p>
-            </div>
-            <div class="number-item">
-                <h3>14+</h3>
-                <p>Live Data Sources</p>
-            </div>
-            <div class="number-item">
-                <h3>3min</h3>
-                <p>Fastest Refresh</p>
-            </div>
-            <div class="number-item">
-                <h3>0</h3>
-                <p>Ads. Ever.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRO -->
-    <section class="pro-section" id="pro">
-        <div class="section-container">
-            <div class="pro-card reveal">
-                <div class="pro-badge">PulseBoard Pro</div>
-                <div class="section-title">Unlock everything.</div>
-                <p class="section-desc" style="margin: 0 auto;">Unlimited widgets, expanded Pulse AI, and priority data refresh. Built by Filipinos, for Filipinos.</p>
-                <div class="pro-pricing">
-                    <div class="price-option">
-                        <div class="price-period">Monthly</div>
-                        <div class="price-amount">₱149</div>
-                        <div class="price-unit">per month</div>
-                    </div>
-                    <div class="price-option popular">
-                        <div class="price-period">Annual</div>
-                        <div class="price-amount">₱999</div>
-                        <div class="price-unit">per year</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section" id="download">
+    </div></section>
+    <section class="pulse-section" id="pulse"><div class="section-container"><div class="pulse-layout">
         <div class="reveal">
-            <div class="section-label">Available Now</div>
-            <div class="section-title">Stop scrolling.<br>Start knowing.</div>
-            <p class="section-desc">Download PulseBoard free. Your Philippine intelligence dashboard is waiting.</p>
-            <div class="store-buttons">
-                <a href="#" class="store-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                    <div class="store-btn-text">
-                        <div class="store-btn-label">Download on the</div>
-                        <div class="store-btn-name">App Store</div>
-                    </div>
-                </a>
-                <a href="#" class="store-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302L18.309 12l1.691 1.69-2.302 2.302L14.5 12.794l3.198-3.286zM5.864 2.658L16.8 8.991l-2.302 2.302L5.864 2.658z"/></svg>
-                    <div class="store-btn-text">
-                        <div class="store-btn-label">Get it on</div>
-                        <div class="store-btn-name">Google Play</div>
-                    </div>
-                </a>
-            </div>
+            <div class="section-label">Pulse AI</div>
+            <div class="section-title">Ask anything about the Philippines.</div>
+            <p class="section-desc" style="margin-bottom:32px">Pulse reads your live dashboard data — weather, alerts, fuel, news, earthquakes — and gives concise, context-aware answers. Not generic AI. Real Philippine intelligence.</p>
+            <div class="pulse-feature"><div class="pulse-check">✓</div><span>Reads your live widget data for accurate answers</span></div>
+            <div class="pulse-feature"><div class="pulse-check">✓</div><span>Warm, direct, Filipino-English tone</span></div>
+            <div class="pulse-feature"><div class="pulse-check">✓</div><span>Follow-up suggestions to dig deeper</span></div>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-left">
-                <svg width="120" height="18" viewBox="0 0 639 98" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 95.625V5.4375H38.8125C59 5.4375 72 18.0625 72 37.375V37.5C72 56.8125 59 69.1875 38.8125 69.1875H22.9375V95.625H0ZM33.3125 23H22.9375V51.9375H33.3125C43.0625 51.9375 48.8125 46.875 48.8125 37.5V37.375C48.8125 28 43.0625 23 33.3125 23ZM103.625 97.25C88.1875 97.25 80.25 87.6875 80.25 71V26.0625H102.375V66.0625C102.375 74.5 105.625 79.1875 113.125 79.1875C120.625 79.1875 124.75 73.75 124.75 65.8125V26.0625H146.875V95.625H124.75V84.75H123.562C120.562 92.375 113.438 97.25 103.625 97.25ZM158.75 95.625V0H180.875V95.625H158.75ZM222.312 97.25C201.688 97.25 190.875 88.25 189.5 76.125V75.6875H211L211.125 76.0625C212.438 79.625 215.938 82.3125 222.375 82.3125C228.312 82.3125 232.125 80 232.125 76.25V76.1875C232.125 72.9375 229.75 71.0625 223.438 69.75L211.438 67.375C198 64.6875 191.125 57.6875 191.125 47.0625V47C191.125 33.125 203 24.4375 221.688 24.4375C241.812 24.4375 251.938 34.4375 252.312 45.5625V45.875H232.062L231.938 45.4375C231.25 42.5625 227.812 39.3125 221.688 39.3125C216.188 39.3125 212.5 41.625 212.5 45.5V45.625C212.5 48.75 214.625 50.5625 221.25 51.9375L233.25 54.3125C247.625 57.1875 254.188 63.0625 254.188 73.5V73.5625C254.188 88 241.188 97.25 222.312 97.25ZM293.812 97.25C272 97.25 258.688 83.4375 258.688 60.875V60.8125C258.688 38.375 272 24.4375 293 24.4375C313.938 24.4375 327.25 38.1875 327.25 59.4375V65.8125H280.438C280.625 75.75 285.75 81.5 294.25 81.5C301.625 81.5 305.438 77.25 306.438 75.4375L306.562 75.1875L326.812 75.125L326.625 75.875C324.625 84.1875 316.125 97.25 293.812 97.25ZM293.5 40.1875C286.688 40.1875 281.75 44.75 280.688 52.9375H306.312C305.25 44.625 300.375 40.1875 293.5 40.1875Z" fill="#FF5236"/>
-                    <path d="M338.062 95.625V5.4375H367.625C384.312 5.4375 394.75 14.1875 394.75 27.375V27.5C394.75 38.1875 387.75 46.5625 377 48.5625V48.9375C389.25 50.5 399.5 58.5 399.5 71.625V71.75C399.5 86.375 388.938 95.625 367.812 95.625H338.062ZM366.875 9.9375H343V47H366.062C380.438 47 389.75 39.8125 389.75 28.0625V27.9375C389.75 17 381 9.9375 366.875 9.9375ZM366.938 51.4375H343V91.125H367.25C385.688 91.125 394.438 83.625 394.438 71.625V71.5C394.438 59 383.562 51.4375 366.938 51.4375ZM438.312 96.6875C420 96.6875 408.312 83.25 408.312 62.0625V61.9375C408.312 40.6875 420 27.3125 438.312 27.3125C456.625 27.3125 468.312 40.6875 468.312 61.9375V62.0625C468.312 83.25 456.625 96.6875 438.312 96.6875ZM438.312 92.25C453.625 92.25 463.375 80.4375 463.375 62.0625V61.9375C463.375 43.5 453.625 31.6875 438.312 31.6875C422.938 31.6875 413.25 43.4375 413.25 61.9375V62.0625C413.25 80.5 422.938 92.25 438.312 92.25ZM499.75 96.6875C486.562 96.6875 477.312 89 477.312 77.4375V77.3125C477.312 65.9375 485.688 59.3125 501.188 58.1875L524.375 56.4375V49.875C524.375 38 517.125 31.6875 505.188 31.6875C494.625 31.6875 486.75 36.375 484.875 44.875V45H480V44.8125C481.812 33.875 491.812 27.3125 505.312 27.3125C520.125 27.3125 529.188 35.3125 529.188 49.8125V95.625H524.375V81.875H523.875C520.188 90.9375 510.938 96.6875 499.75 96.6875ZM482.188 77.375C482.188 86.3125 489.688 92.3125 500.375 92.3125C513.812 92.3125 524.375 82.75 524.375 70.5625V60.5625L501.938 62.25C488.938 63.25 482.188 68.4375 482.188 77.25V77.375ZM545 95.625V28.3125H549.812V40.875H550.312C553.062 32.375 559.938 27.3125 569 27.3125C572 27.3125 574.188 27.5625 576.5 28.25V33.0625C573.938 32.25 571.562 31.875 568.688 31.875C558 31.875 549.812 41.0625 549.812 53.3125V95.625H545ZM608.5 96.6875C591.438 96.6875 579.688 82.5 579.688 62.0625V61.9375C579.688 41.5 591.5 27.3125 608.5 27.3125C619.875 27.3125 629.438 34.125 633.25 44.8125H633.688V1.5H638.5V95.625H633.688V78.6875H633.25C629.5 89.6875 620.125 96.6875 608.5 96.6875ZM609.188 92.25C623.75 92.25 633.75 80 633.75 62.0625V61.9375C633.75 44 623.75 31.6875 609.188 31.6875C594.562 31.6875 584.625 44 584.625 61.9375V62.0625C584.625 80 594.562 92.25 609.188 92.25Z" fill="white"/>
-                </svg>
-                <span class="footer-tagline">Built by Filipinos, for Filipinos. © 2026 Allelic Media</span>
-            </div>
-            <div class="footer-links">
-                <a href="https://dnyeldev.github.io/pulseboard-legal/privacy">Privacy</a>
-                <a href="https://dnyeldev.github.io/pulseboard-legal/terms">Terms</a>
-                <a href="mailto:support@allelicmedia.com">Contact</a>
-            </div>
+        <div class="reveal" style="transition-delay:.2s"><div class="pulse-chat">
+            <div class="chat-header"><div class="chat-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="4,12 8,8 12,16 16,6 20,12"/></svg></div><div><div class="chat-name">Pulse</div><div class="chat-status">● Online</div></div></div>
+            <div class="chat-bubble chat-user">Should I bring an umbrella today?</div>
+            <div class="chat-bubble chat-ai">No need! It's 32° and clear skies in Quezon City right now. PAGASA shows no rain expected until Thursday. You're good.</div>
+            <div class="chat-bubble chat-user">What about fuel, did prices go up?</div>
+            <div class="chat-bubble chat-ai">Diesel went up ₱0.80/L this week. Shell is cheapest right now at ₱65.40/L in Metro Manila. Petron and Caltex are at ₱66.10.</div>
+            <div class="chat-chips"><div class="chat-chip">Show price trends</div><div class="chat-chip">Any alerts nearby?</div></div>
+        </div></div>
+    </div></div></section>
+    <div class="numbers-section"><div class="numbers-grid reveal">
+        <div class="number-item"><h3>12</h3><p>Intelligence Widgets</p></div>
+        <div class="number-item"><h3>14+</h3><p>Live Data Sources</p></div>
+        <div class="number-item"><h3>3min</h3><p>Fastest Refresh</p></div>
+        <div class="number-item"><h3>0</h3><p>Ads. Ever.</p></div>
+    </div></div>
+    <section id="pro"><div class="section-container"><div class="pro-card reveal">
+        <div class="pro-badge">PulseBoard Pro</div>
+        <div class="section-title">Unlock everything.</div>
+        <p class="section-desc" style="margin:0 auto">Unlimited widgets, expanded Pulse AI, and priority data refresh. Built by Filipinos, for Filipinos.</p>
+        <div class="pro-pricing">
+            <div class="price-option"><div class="price-period">Monthly</div><div class="price-amount">₱149</div><div class="price-unit">per month</div></div>
+            <div class="price-option popular"><div class="price-period">Annual</div><div class="price-amount">₱999</div><div class="price-unit">per year</div></div>
         </div>
-    </footer>
-
-    <!-- SCROLL REVEAL -->
+    </div></div></section>
+    <section class="cta-section" id="download"><div class="reveal">
+        <div class="section-label">Available Now</div>
+        <div class="section-title">Stop scrolling.<br>Start knowing.</div>
+        <p class="section-desc">Download PulseBoard free. Your Philippine intelligence dashboard is waiting.</p>
+        <div class="store-buttons">
+            <a href="#" class="store-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="store-btn-text"><div class="store-btn-label">Download on the</div><div class="store-btn-name">App Store</div></div></a>
+            <a href="#" class="store-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302L18.309 12l1.691 1.69-2.302 2.302L14.5 12.794l3.198-3.286zM5.864 2.658L16.8 8.991l-2.302 2.302L5.864 2.658z"/></svg><div class="store-btn-text"><div class="store-btn-label">Get it on</div><div class="store-btn-name">Google Play</div></div></a>
+        </div>
+    </div></section>
+    <footer><div class="footer-inner">
+        <div class="footer-left">
+            <svg width="120" height="18" viewBox="0 0 639 98" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 95.625V5.4375H38.8125C59 5.4375 72 18.0625 72 37.375V37.5C72 56.8125 59 69.1875 38.8125 69.1875H22.9375V95.625H0ZM33.3125 23H22.9375V51.9375H33.3125C43.0625 51.9375 48.8125 46.875 48.8125 37.5V37.375C48.8125 28 43.0625 23 33.3125 23ZM103.625 97.25C88.1875 97.25 80.25 87.6875 80.25 71V26.0625H102.375V66.0625C102.375 74.5 105.625 79.1875 113.125 79.1875C120.625 79.1875 124.75 73.75 124.75 65.8125V26.0625H146.875V95.625H124.75V84.75H123.562C120.562 92.375 113.438 97.25 103.625 97.25ZM158.75 95.625V0H180.875V95.625H158.75ZM222.312 97.25C201.688 97.25 190.875 88.25 189.5 76.125V75.6875H211L211.125 76.0625C212.438 79.625 215.938 82.3125 222.375 82.3125C228.312 82.3125 232.125 80 232.125 76.25V76.1875C232.125 72.9375 229.75 71.0625 223.438 69.75L211.438 67.375C198 64.6875 191.125 57.6875 191.125 47.0625V47C191.125 33.125 203 24.4375 221.688 24.4375C241.812 24.4375 251.938 34.4375 252.312 45.5625V45.875H232.062L231.938 45.4375C231.25 42.5625 227.812 39.3125 221.688 39.3125C216.188 39.3125 212.5 41.625 212.5 45.5V45.625C212.5 48.75 214.625 50.5625 221.25 51.9375L233.25 54.3125C247.625 57.1875 254.188 63.0625 254.188 73.5V73.5625C254.188 88 241.188 97.25 222.312 97.25ZM293.812 97.25C272 97.25 258.688 83.4375 258.688 60.875V60.8125C258.688 38.375 272 24.4375 293 24.4375C313.938 24.4375 327.25 38.1875 327.25 59.4375V65.8125H280.438C280.625 75.75 285.75 81.5 294.25 81.5C301.625 81.5 305.438 77.25 306.438 75.4375L306.562 75.1875L326.812 75.125L326.625 75.875C324.625 84.1875 316.125 97.25 293.812 97.25ZM293.5 40.1875C286.688 40.1875 281.75 44.75 280.688 52.9375H306.312C305.25 44.625 300.375 40.1875 293.5 40.1875Z" fill="#FF5236"/><path d="M338.062 95.625V5.4375H367.625C384.312 5.4375 394.75 14.1875 394.75 27.375V27.5C394.75 38.1875 387.75 46.5625 377 48.5625V48.9375C389.25 50.5 399.5 58.5 399.5 71.625V71.75C399.5 86.375 388.938 95.625 367.812 95.625H338.062ZM366.875 9.9375H343V47H366.062C380.438 47 389.75 39.8125 389.75 28.0625V27.9375C389.75 17 381 9.9375 366.875 9.9375ZM366.938 51.4375H343V91.125H367.25C385.688 91.125 394.438 83.625 394.438 71.625V71.5C394.438 59 383.562 51.4375 366.938 51.4375ZM438.312 96.6875C420 96.6875 408.312 83.25 408.312 62.0625V61.9375C408.312 40.6875 420 27.3125 438.312 27.3125C456.625 27.3125 468.312 40.6875 468.312 61.9375V62.0625C468.312 83.25 456.625 96.6875 438.312 96.6875ZM438.312 92.25C453.625 92.25 463.375 80.4375 463.375 62.0625V61.9375C463.375 43.5 453.625 31.6875 438.312 31.6875C422.938 31.6875 413.25 43.4375 413.25 61.9375V62.0625C413.25 80.5 422.938 92.25 438.312 92.25ZM499.75 96.6875C486.562 96.6875 477.312 89 477.312 77.4375V77.3125C477.312 65.9375 485.688 59.3125 501.188 58.1875L524.375 56.4375V49.875C524.375 38 517.125 31.6875 505.188 31.6875C494.625 31.6875 486.75 36.375 484.875 44.875V45H480V44.8125C481.812 33.875 491.812 27.3125 505.312 27.3125C520.125 27.3125 529.188 35.3125 529.188 49.8125V95.625H524.375V81.875H523.875C520.188 90.9375 510.938 96.6875 499.75 96.6875ZM482.188 77.375C482.188 86.3125 489.688 92.3125 500.375 92.3125C513.812 92.3125 524.375 82.75 524.375 70.5625V60.5625L501.938 62.25C488.938 63.25 482.188 68.4375 482.188 77.25V77.375ZM545 95.625V28.3125H549.812V40.875H550.312C553.062 32.375 559.938 27.3125 569 27.3125C572 27.3125 574.188 27.5625 576.5 28.25V33.0625C573.938 32.25 571.562 31.875 568.688 31.875C558 31.875 549.812 41.0625 549.812 53.3125V95.625H545ZM608.5 96.6875C591.438 96.6875 579.688 82.5 579.688 62.0625V61.9375C579.688 41.5 591.5 27.3125 608.5 27.3125C619.875 27.3125 629.438 34.125 633.25 44.8125H633.688V1.5H638.5V95.625H633.688V78.6875H633.25C629.5 89.6875 620.125 96.6875 608.5 96.6875ZM609.188 92.25C623.75 92.25 633.75 80 633.75 62.0625V61.9375C633.75 44 623.75 31.6875 609.188 31.6875C594.562 31.6875 584.625 44 584.625 61.9375V62.0625C584.625 80 594.562 92.25 609.188 92.25Z" fill="white"/></svg>
+            <span class="footer-tagline">Built by Filipinos, for Filipinos. © 2026 Allelic Media</span>
+        </div>
+        <div class="footer-links">
+            <a href="https://dnyeldev.github.io/pulseboard-legal/privacy">Privacy</a>
+            <a href="https://dnyeldev.github.io/pulseboard-legal/terms">Terms</a>
+            <a href="mailto:support@allelicmedia.com">Contact</a>
+        </div>
+    </div></footer>
     <script>
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15 });
-
-        reveals.forEach(el => observer.observe(el));
+        const reveals=document.querySelectorAll('.reveal');
+        const observer=new IntersectionObserver(e=>{e.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:.15});
+        reveals.forEach(el=>observer.observe(el));
     </script>
-
 </body>
 </html>
