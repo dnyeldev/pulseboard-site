@@ -28,8 +28,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@aspect-ratio/general-sans@1.0.0/fonts/GeneralSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>
+    /* ============================================
+       FONT
+       ============================================ */
+    @font-face {
+      font-family: 'General Sans';
+      src: url('https://cdn.jsdelivr.net/npm/@aspect-ratio/general-sans@1.0.0/fonts/GeneralSans-Variable.woff2') format('woff2');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
     /* ============================================
        RESET & BASE
        ============================================ */
@@ -57,6 +68,7 @@
       --blue: #0A84FF;
       --yellow: #FFD60A;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-heading: 'General Sans', var(--font);
       --max-width: 1120px;
       --section-gap: 120px;
       --section-gap-mobile: 80px;
@@ -86,6 +98,10 @@
       max-width: 100%;
       height: auto;
       display: block;
+    }
+
+    h1, h2, h3, .hero-title, .section-title, .cta-title, .feature-name, .step-title {
+      font-family: var(--font-heading);
     }
 
     /* Focus styles for accessibility */
@@ -228,17 +244,14 @@
       letter-spacing: -0.02em;
     }
 
-    .nav-logo {
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-      color: white;
+    .nav-logo-img {
+      height: 28px;
+      width: auto;
+    }
+
+    .footer-logo-img {
+      height: 20px;
+      width: auto;
     }
 
     .nav-cta {
@@ -427,150 +440,15 @@
       animation: fadeInUp 0.8s ease-out 0.5s both;
     }
 
-    .phone-frame {
+    .hero-screenshot {
       width: 280px;
-      height: 580px;
-      background: #000;
       border-radius: 40px;
       border: 3px solid #2C2C2E;
-      padding: 12px;
-      position: relative;
-      animation: float 6s ease-in-out infinite;
       box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.05),
         0 20px 60px rgba(0, 0, 0, 0.5),
         0 0 40px var(--accent-glow);
-    }
-
-    .phone-notch {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 28px;
-      background: #000;
-      border-radius: 0 0 16px 16px;
-      z-index: 2;
-    }
-
-    .phone-screen {
-      width: 100%;
-      height: 100%;
-      background: var(--bg-primary);
-      border-radius: 28px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .phone-screen-content {
-      padding: 48px 16px 16px;
-    }
-
-    .phone-greeting {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      letter-spacing: -0.02em;
-    }
-
-    .phone-subtext {
-      font-size: 11px;
-      color: var(--text-tertiary);
-      margin-bottom: 16px;
-    }
-
-    .phone-widget {
-      background: #0B0B0B;
-      border: 1px solid var(--border-medium);
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .phone-widget::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 10%;
-      right: 10%;
-      height: 1px;
-      background: rgba(255, 82, 54, 0.07);
-      filter: blur(2px);
-    }
-
-    .phone-widget-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .phone-widget-icon {
-      width: 14px;
-      height: 14px;
-      color: var(--accent);
-    }
-
-    .phone-widget-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .phone-widget-value {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .phone-widget-sub {
-      font-size: 10px;
-      color: var(--text-tertiary);
-      margin-top: 2px;
-    }
-
-    .phone-widget-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      padding: 2px 8px;
-      background: rgba(52, 199, 89, 0.12);
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 600;
-      border-radius: 100px;
-      margin-top: 4px;
-    }
-
-    .phone-news-item {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .phone-news-thumb {
-      width: 48px;
-      height: 48px;
-      background: var(--bg-elevated);
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .phone-news-title {
-      font-size: 11px;
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .phone-news-source {
-      font-size: 9px;
-      color: var(--text-tertiary);
-      margin-top: 3px;
+      animation: float 6s ease-in-out infinite;
     }
 
     /* ============================================
@@ -656,7 +534,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
@@ -664,10 +542,33 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 28px;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+    }
+
+    .feature-preview {
+      height: 200px;
+      background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .feature-img {
+      width: 92%;
+      height: auto;
+      border-radius: 12px;
+      border: 0.5px solid rgba(255,255,255,0.04);
+      object-fit: cover;
+      max-height: 100%;
+    }
+
+    .feature-body {
+      padding: 24px;
     }
 
     .feature-card::before {
@@ -693,10 +594,9 @@
     }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent-glow);
-      border-radius: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1014,7 +914,7 @@
       }
 
       .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
       }
 
       .steps {
@@ -1044,11 +944,6 @@
         padding: 100px 0 60px;
       }
 
-      .phone-frame {
-        width: 240px;
-        height: 500px;
-      }
-
       .hero-stats {
         gap: 24px;
       }
@@ -1070,8 +965,8 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="/" class="nav-brand" aria-label="PulseBoard home">
-        <div class="nav-logo" aria-hidden="true">P</div>
-        PulseBoard
+        <img src="logo.svg" alt="PulseBoard" class="nav-logo-img" />
+        <span>PulseBoard</span>
       </a>
       <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="nav-cta" role="button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -1123,51 +1018,7 @@
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-screen-content">
-                <div class="phone-greeting">Nice day today, Daniel</div>
-                <div class="phone-subtext">Thursday, April 3</div>
-
-                <div class="phone-widget">
-                  <div class="phone-widget-header">
-                    <svg class="phone-widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
-                    <span class="phone-widget-title">Weather</span>
-                  </div>
-                  <div class="phone-widget-value">32°C</div>
-                  <div class="phone-widget-sub">Partly cloudy. No rain today.</div>
-                </div>
-
-                <div class="phone-widget">
-                  <div class="phone-widget-header">
-                    <svg class="phone-widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                    <span class="phone-widget-title">Fuel Prices</span>
-                  </div>
-                  <div class="phone-widget-value">&#8369;65.40/L</div>
-                  <div class="phone-widget-sub">Diesel, Metro Manila</div>
-                  <div class="phone-widget-pill">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 15l-6-6-6 6"/></svg>
-                    &#8369;0.80 rollback
-                  </div>
-                </div>
-
-                <div class="phone-widget">
-                  <div class="phone-widget-header">
-                    <svg class="phone-widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
-                    <span class="phone-widget-title">Breaking</span>
-                  </div>
-                  <div class="phone-news-item">
-                    <div class="phone-news-thumb"></div>
-                    <div>
-                      <div class="phone-news-title">PAGASA: Southwest monsoon to bring rain over Visayas</div>
-                      <div class="phone-news-source">PhilStar  ·  12 min ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="screenshot.png" alt="PulseBoard app screenshot" class="hero-screenshot" />
         </div>
       </div>
     </div>
@@ -1213,86 +1064,179 @@
       </div>
 
       <div class="features-grid">
+        <!-- Live News Feed -->
         <div class="feature-card reveal-stagger" style="transition-delay: 0ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+          <div class="feature-preview">
+            <img src="news.png" alt="Live News Feed screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Live News Feed</h3>
-          <p class="feature-desc">Aggregated from PhilStar, Manila Times, Inquirer, and more. Sorted by what matters, not what gets clicks.</p>
-          <span class="feature-tag live">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-            Auto-updating
-          </span>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,82,54,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF5236" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+            </div>
+            <h3 class="feature-name">Live News Feed</h3>
+            <p class="feature-desc">Aggregated from PhilStar, Manila Times, Inquirer, and more. Sorted by what matters, not what gets clicks.</p>
+            <span class="feature-tag live">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+              Auto-updating
+            </span>
+          </div>
         </div>
 
+        <!-- Disaster Alerts -->
         <div class="feature-card reveal-stagger" style="transition-delay: 80ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div class="feature-preview">
+            <img src="alerts.png" alt="Disaster Alerts screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Disaster Alerts</h3>
-          <p class="feature-desc">PAGASA weather warnings, USGS earthquakes, GDACS alerts, and Rappler breaking updates. Notifications within 3 minutes.</p>
-          <span class="feature-tag live">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-            Real-time
-          </span>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,69,58,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF453A" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3 class="feature-name">Disaster Alerts</h3>
+            <p class="feature-desc">PAGASA weather warnings, USGS earthquakes, GDACS alerts, and Rappler breaking updates. Notifications within 3 minutes.</p>
+            <span class="feature-tag live">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+              Real-time
+            </span>
+          </div>
         </div>
 
+        <!-- Weather -->
         <div class="feature-card reveal-stagger" style="transition-delay: 160ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          <div class="feature-preview">
+            <img src="weather.png" alt="Weather screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Weather</h3>
-          <p class="feature-desc">Current conditions and forecast for your area. Written in plain language. "No rain today" instead of raw data dumps.</p>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(10,132,255,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+            </div>
+            <h3 class="feature-name">Weather</h3>
+            <p class="feature-desc">Current conditions and forecast for your area. Written in plain language. "No rain today" instead of raw data dumps.</p>
+          </div>
         </div>
 
+        <!-- Fuel Prices -->
         <div class="feature-card reveal-stagger" style="transition-delay: 240ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <div class="feature-preview">
+            <img src="fuel-prices.png" alt="Fuel Prices screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Fuel Prices</h3>
-          <p class="feature-desc">Weekly price movements for gasoline, diesel, and kerosene across Metro Manila. Historical sparklines show the trend.</p>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,159,10,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF9F0A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 class="feature-name">Fuel Prices</h3>
+            <p class="feature-desc">Weekly price movements for gasoline, diesel, and kerosene across Metro Manila. Historical sparklines show the trend.</p>
+          </div>
         </div>
 
+        <!-- Market Radar -->
         <div class="feature-card reveal-stagger" style="transition-delay: 320ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8 8l8 8"/></svg>
+          <div class="feature-preview">
+            <img src="market-radar.png" alt="Market Radar screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Toll Fees</h3>
-          <p class="feature-desc">160+ routes across 10 expressways. NLEX, SLEX, TPLEX, SCTEX, CALAX, and more. Search your route, get the price instantly.</p>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(50,215,75,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 class="feature-name">Market Radar</h3>
+            <p class="feature-desc">Track USD/PHP, PSEi, BTC, Gold, and Brent Oil. Live sparklines and trends.</p>
+          </div>
         </div>
 
+        <!-- Daily Essentials -->
         <div class="feature-card reveal-stagger" style="transition-delay: 400ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+          <div class="feature-preview">
+            <img src="daily-essentials.png" alt="Daily Essentials screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Live TV</h3>
-          <p class="feature-desc">Watch GMA, ABS-CBN, PTV, DZBB, DZMM, DZRH, and News5 directly inside the app. No browser needed.</p>
-          <span class="feature-tag pro">Pro</span>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,159,10,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF9F0A" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3 class="feature-name">Daily Essentials</h3>
+            <p class="feature-desc">Rice, electricity, jeepney fare, eggs. Updated weekly from official PH sources.</p>
+          </div>
         </div>
 
+        <!-- Toll Fees -->
         <div class="feature-card reveal-stagger" style="transition-delay: 480ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="feature-preview">
+            <img src="toll-fees.png" alt="Toll Fees screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Pulse AI</h3>
-          <p class="feature-desc">Ask anything about today's news, weather, prices, or alerts. Get straight answers powered by your real-time data, not the internet.</p>
-          <span class="feature-tag">AI-powered</span>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(142,142,147,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8 8l8 8"/></svg>
+            </div>
+            <h3 class="feature-name">Toll Fees</h3>
+            <p class="feature-desc">160+ routes across 10 expressways. NLEX, SLEX, TPLEX, SCTEX, CALAX, and more. Search your route, get the price instantly.</p>
+          </div>
         </div>
 
+        <!-- Live TV -->
         <div class="feature-card reveal-stagger" style="transition-delay: 560ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <div class="feature-preview">
+            <img src="live-tv.png" alt="Live TV screenshot" class="feature-img" />
           </div>
-          <h3 class="feature-name">Number Coding</h3>
-          <p class="feature-desc">Instantly check if your plate number is coding today. Covers Metro Manila's Unified Vehicular Volume Reduction Programme.</p>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(50,215,75,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            </div>
+            <h3 class="feature-name">Live TV</h3>
+            <p class="feature-desc">Watch GMA, ABS-CBN, PTV, DZBB, DZMM, DZRH, and News5 directly inside the app. No browser needed.</p>
+            <span class="feature-tag pro">Pro</span>
+          </div>
         </div>
 
+        <!-- Pulse AI -->
         <div class="feature-card reveal-stagger" style="transition-delay: 640ms">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,82,54,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF5236" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="feature-name">Pulse AI</h3>
+            <p class="feature-desc">Ask anything about today's news, weather, prices, or alerts. Get straight answers powered by your real-time data, not the internet.</p>
+            <span class="feature-tag">AI-powered</span>
           </div>
-          <h3 class="feature-name">Layoff Tracker</h3>
-          <p class="feature-desc">Track company layoffs affecting the Philippine job market. Stay informed about workforce changes across industries.</p>
+        </div>
+
+        <!-- Number Coding -->
+        <div class="feature-card reveal-stagger" style="transition-delay: 720ms">
+          <div class="feature-preview">
+            <img src="number-coding.png" alt="Number Coding screenshot" class="feature-img" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(142,142,147,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="feature-name">Number Coding</h3>
+            <p class="feature-desc">Instantly check if your plate number is coding today. Covers Metro Manila's Unified Vehicular Volume Reduction Programme.</p>
+          </div>
+        </div>
+
+        <!-- Earthquake -->
+        <div class="feature-card reveal-stagger" style="transition-delay: 800ms">
+          <div class="feature-preview">
+            <img src="earthquake.png" alt="Earthquake screenshot" class="feature-img" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(255,69,58,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#FF453A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 class="feature-name">Earthquake</h3>
+            <p class="feature-desc">Real-time USGS earthquake data for the Philippines. Magnitude, depth, location.</p>
+          </div>
+        </div>
+
+        <!-- Flight Tracker -->
+        <div class="feature-card reveal-stagger" style="transition-delay: 880ms">
+          <div class="feature-preview">
+            <img src="flight-tracker.png" alt="Flight Tracker screenshot" class="feature-img" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-icon" style="background: rgba(10,132,255,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            </div>
+            <h3 class="feature-name">Flight Tracker</h3>
+            <p class="feature-desc">Track flights over the Philippines in real time.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1383,8 +1327,8 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="nav-logo" style="width:24px; height:24px; font-size:12px; border-radius:6px;" aria-hidden="true">P</div>
-          <strong>PulseBoard</strong> by Allelic Media
+          <img src="logo.svg" alt="PulseBoard" class="footer-logo-img" />
+          <span><strong>PulseBoard</strong> by Allelic Media</span>
         </div>
         <div class="footer-links">
           <a href="https://dnyeldev.github.io/pulseboard-legal/" class="footer-link">Privacy Policy</a>
