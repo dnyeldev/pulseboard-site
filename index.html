@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseBoard - Your Philippine Intelligence Dashboard</title>
+  <title>PulseBoard — Real-Time Philippine Intelligence Dashboard</title>
   <meta name="description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat. Everything a Filipino needs to know, in one app.">
   <meta name="theme-color" content="#0A0A0A">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="PulseBoard - Your Philippine Intelligence Dashboard">
+  <meta property="og:title" content="PulseBoard — Real-Time Philippine Intelligence Dashboard">
   <meta property="og:description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat. No drama. No bloat. Only what matters.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pulseboard.today">
@@ -18,7 +18,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PulseBoard - Your Philippine Intelligence Dashboard">
+  <meta name="twitter:title" content="PulseBoard — Real-Time Philippine Intelligence Dashboard">
   <meta name="twitter:description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat.">
 
   <!-- Smart App Banner (iOS) -->
@@ -27,1348 +27,627 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@aspect-ratio/general-sans@1.0.0/fonts/GeneralSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['General Sans', 'sans-serif'],
+          },
+          colors: {
+            void: '#0A0A0A',
+            surface: '#121212',
+            'surface-raised': '#1A1A1A',
+            brand: '#FF5236',
+            'brand-glow': 'rgba(255, 82, 54, 0.15)',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-d1': 'float 7s ease-in-out infinite -2s',
+            'float-d2': 'float 8s ease-in-out infinite -4s',
+            'float-d3': 'float 6.5s ease-in-out infinite -1s',
+            'shimmer': 'shimmer 2s infinite linear',
+            'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    /* ============================================
-       FONT
-       ============================================ */
-    @font-face {
-      font-family: 'General Sans';
-      src: url('https://cdn.jsdelivr.net/npm/@aspect-ratio/general-sans@1.0.0/fonts/GeneralSans-Variable.woff2') format('woff2');
-      font-weight: 100 900;
-      font-display: swap;
-    }
-
-    /* ============================================
-       RESET & BASE
-       ============================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-primary: #0A0A0A;
-      --bg-card: #111111;
-      --bg-card-hover: #161616;
-      --bg-elevated: #1A1A1A;
-      --border-subtle: #1E1E1E;
-      --border-medium: #2C2C2E;
-      --text-primary: #F0F0F0;
-      --text-secondary: #A0A0A0;
-      --text-tertiary: #666666;
-      --accent: #FF5236;
-      --accent-hover: #FF6B52;
-      --accent-glow: rgba(255, 82, 54, 0.15);
-      --accent-glow-strong: rgba(255, 82, 54, 0.25);
-      --green: #34C759;
-      --blue: #0A84FF;
-      --yellow: #FFD60A;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --font-heading: 'General Sans', var(--font);
-      --max-width: 1120px;
-      --section-gap: 120px;
-      --section-gap-mobile: 80px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-
     body {
-      font-family: var(--font);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0A0A0A; }
+    ::-webkit-scrollbar-thumb { background: #1A1A1A; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #FF5236; }
+
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    .glass-badge {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    h1, h2, h3, .hero-title, .section-title, .cta-title, .feature-name, .step-title {
-      font-family: var(--font-heading);
-    }
-
-    /* Focus styles for accessibility */
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid #FF5236;
       outline-offset: 3px;
       border-radius: 4px;
     }
 
-    /* ============================================
-       UTILITY
-       ============================================ */
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    .fade-in-up {
+      animation: fade-in-up 0.8s ease-out both;
     }
 
-    /* ============================================
-       ANIMATIONS
-       ============================================ */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .fade-in-up-delay-1 { animation-delay: 0.15s; }
+    .fade-in-up-delay-2 { animation-delay: 0.3s; }
+    .fade-in-up-delay-3 { animation-delay: 0.45s; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .preserve-3d { transform-style: preserve-3d; }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    @keyframes glow-pulse {
-      0%, 100% { box-shadow: 0 0 20px var(--accent-glow), 0 0 60px rgba(255, 82, 54, 0.05); }
-      50% { box-shadow: 0 0 30px var(--accent-glow-strong), 0 0 80px rgba(255, 82, 54, 0.1); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-stagger {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-
-    .reveal-stagger.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal, .reveal-stagger {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    /* ============================================
-       NAV
-       ============================================ */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 16px 0;
-      transition: background 0.3s ease, backdrop-filter 0.3s ease;
-    }
-
-    .nav.scrolled {
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo-img {
-      height: 28px;
-      width: auto;
-    }
-
-    .footer-logo-img {
-      height: 20px;
-      width: auto;
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
-    }
-
-    .nav-cta:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    .nav-cta:active {
-      transform: translateY(0);
-    }
-
-    /* ============================================
-       HERO
-       ============================================ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 0 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Ambient glow behind hero */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255, 82, 54, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-medium);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-      animation: fadeIn 0.6s ease-out 0.2s both;
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-
-    .hero-title {
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-      animation: fadeInUp 0.7s ease-out 0.3s both;
-    }
-
-    .hero-title .accent {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(16px, 2vw, 19px);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      max-width: 480px;
-      margin-bottom: 36px;
-      animation: fadeInUp 0.7s ease-out 0.45s both;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 48px;
-      animation: fadeInUp 0.7s ease-out 0.6s both;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: var(--accent);
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--accent-glow-strong);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: var(--bg-card);
-      color: var(--text-primary);
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 12px;
-      border: 1px solid var(--border-medium);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--text-tertiary);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-      animation: fadeInUp 0.7s ease-out 0.75s both;
-    }
-
-    .hero-stat {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-stat-value {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-stat-label {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      margin-top: 2px;
-    }
-
-    /* Phone mockup */
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      animation: fadeInUp 0.8s ease-out 0.5s both;
-    }
-
-    .hero-screenshot {
-      width: 280px;
-      border-radius: 40px;
-      border: 3px solid #2C2C2E;
+    .widget-shadow {
       box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 40px var(--accent-glow);
-      animation: float 6s ease-in-out infinite;
+        0 30px 60px -15px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(255, 255, 255, 0.02);
+      border: 2px solid #111;
     }
 
-    /* ============================================
-       MARQUEE / TRUST BAR
-       ============================================ */
-    .trust-bar {
-      padding: 40px 0;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      overflow: hidden;
+    .widget-card {
+      background: #000;
     }
 
-    .trust-label {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 20px;
-    }
-
-    .trust-items {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding: 0 24px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-tertiary);
-      font-size: 14px;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .trust-item svg {
-      width: 18px;
-      height: 18px;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    /* ============================================
-       FEATURES
-       ============================================ */
-    .features {
-      padding: var(--section-gap) 0;
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 560px;
-      line-height: 1.6;
-      margin-bottom: 56px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-preview {
-      height: 200px;
-      background: #0A0A0A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 16px;
-      overflow: hidden;
-    }
-
-    .feature-img {
-      width: 92%;
-      height: auto;
-      border-radius: 12px;
-      border: 0.5px solid rgba(255,255,255,0.04);
-      object-fit: cover;
-      max-height: 100%;
-    }
-
-    .feature-body {
-      padding: 24px;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 82, 54, 0.3), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .feature-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-medium);
-      transform: translateY(-4px);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
-    }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .feature-icon svg {
-      width: 22px;
-      height: 22px;
-      color: var(--accent);
-    }
-
-    .feature-name {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .feature-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    .feature-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 10px;
-      background: rgba(10, 132, 255, 0.1);
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: 100px;
-      margin-top: 12px;
-    }
-
-    .feature-tag.pro {
-      background: rgba(255, 214, 10, 0.1);
-      color: var(--yellow);
-    }
-
-    .feature-tag.live {
-      background: rgba(52, 199, 89, 0.1);
-      color: var(--green);
-    }
-
-    /* ============================================
-       HOW IT WORKS
-       ============================================ */
-    .how-it-works {
-      padding: var(--section-gap) 0;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 56px;
-    }
-
-    .step {
-      text-align: center;
-      padding: 32px 24px;
-    }
-
-    .step-number {
-      width: 48px;
-      height: 48px;
-      background: var(--accent-glow);
-      border: 1px solid rgba(255, 82, 54, 0.2);
-      border-radius: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .step-title {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .step-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* ============================================
-       AI SECTION (Highlight)
-       ============================================ */
-    .ai-section {
-      padding: var(--section-gap) 0;
-      border-top: 1px solid var(--border-subtle);
-      position: relative;
-    }
-
-    .ai-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255, 82, 54, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .ai-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .ai-chat-demo {
-      background: var(--bg-card);
-      border: 1px solid var(--border-medium);
-      border-radius: 20px;
-      padding: 24px;
-      animation: glow-pulse 4s ease-in-out infinite;
-    }
-
-    .ai-chat-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .ai-chat-avatar {
-      width: 36px;
-      height: 36px;
-      background: var(--accent-glow);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ai-chat-avatar svg {
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
-    }
-
-    .ai-chat-name {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .ai-chat-status {
-      font-size: 12px;
-      color: var(--green);
-    }
-
-    .chat-bubble {
-      padding: 12px 16px;
-      border-radius: 16px;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 12px;
-      max-width: 85%;
-    }
-
-    .chat-bubble.user {
-      background: var(--accent);
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 4px;
-    }
-
-    .chat-bubble.ai {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-subtle);
-      border-bottom-left-radius: 4px;
-      color: var(--text-primary);
-    }
-
-    /* ============================================
-       CTA SECTION
-       ============================================ */
-    .cta-section {
-      padding: var(--section-gap) 0;
-      text-align: center;
-      position: relative;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(255, 82, 54, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-title {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-subtitle {
-      font-size: 17px;
-      color: var(--text-secondary);
-      margin-bottom: 36px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--text-tertiary);
-    }
-
-    .footer-brand strong {
-      color: var(--text-secondary);
-      font-weight: 600;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-link {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      transition: color 0.2s ease;
-    }
-
-    .footer-link:hover {
-      color: var(--text-secondary);
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      width: 100%;
-      text-align: center;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 48px;
-      }
-
-      .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-ctas {
-        justify-content: center;
-      }
-
-      .hero-stats {
-        justify-content: center;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .ai-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .ai-chat-demo {
-        order: -1;
-      }
-    }
-
-    @media (max-width: 600px) {
-      :root {
-        --section-gap: var(--section-gap-mobile);
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding: 100px 0 60px;
-      }
-
-      .hero-stats {
-        gap: 24px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-links {
-        justify-content: center;
-      }
+    .widget-card img {
+      border-radius: 0;
+      transform: scale(1.03);
     }
   </style>
 </head>
-<body>
 
-  <!-- ============ NAV ============ -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="/" class="nav-brand" aria-label="PulseBoard home">
-        <img src="logo.svg" alt="PulseBoard" class="nav-logo-img" />
-        <span>PulseBoard</span>
-      </a>
-      <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="nav-cta" role="button">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        Get the App
-      </a>
+<body class="selection:bg-brand selection:text-white">
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ -->
+  <nav class="fixed top-0 w-full z-40 glass-panel border-t-0 border-x-0 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <svg width="28" height="24" viewBox="0 0 540 468" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M257.938 401.29H257.419H257.362L257.394 401.348L257.938 401.29Z" fill="#FF5236"/>
+          <path d="M257.938 401.29L257.394 401.348L241.588 438.34L228.923 467.979H229.167H294.464H299.114H401.197L402.991 467.969C478.823 467.006 540 405.089 540 328.85C540 267.981 501.003 216.242 446.685 197.365L495.191 164.652L495.097 89.2216L417.183 87.2858L360.455 170.021C349.461 164.175 337.638 159.667 325.205 156.712L345.071 53.2716L306.985 18.1906L288.597 0L234.751 53.2716L254.673 157.009C241.465 160.267 228.957 165.282 217.417 171.791L159.699 88.2357H81.598V164.654L165.292 221.099C158.21 232.189 152.584 244.284 148.681 257.12L53.7139 239.181L0 295.19L53.7139 348.593L145.821 331.193C148.776 344.574 153.57 357.272 159.927 369.015L84.1618 420.112L84.1315 443.19L84.0956 443.221L84.1618 467.969L110.133 468L110.152 467.98L161.608 468L276.609 256.801H313.56H401.197C413.251 256.801 424.611 259.775 434.589 265.031C457.471 277.085 473.077 301.141 473.077 328.85C473.077 368.642 446.422 401.348 406.723 401.348H398.106H328.021L258.458 401.29H257.938Z" fill="#FF5236"/>
+        </svg>
+        <span class="font-display font-semibold text-xl tracking-tight">
+          <span class="text-brand">Pulse</span><span class="text-gray-300">Board</span>
+        </span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+        <a href="#features" class="hover:text-white transition-colors">Features</a>
+        <a href="#widgets" class="hover:text-white transition-colors">Widgets</a>
+        <a href="#ai" class="hover:text-white transition-colors">Pulse AI</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
+          <i class="ph-fill ph-apple-logo text-lg"></i>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
+          <i class="ph-fill ph-google-play-logo text-lg"></i>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" aria-label="Introduction">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="hero-badge-dot" aria-hidden="true"></span>
-            Now live on iOS and Android
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col items-center">
+    <!-- Ambient glow -->
+    <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-brand-glow via-transparent to-transparent opacity-80 blur-3xl pointer-events-none" style="background: radial-gradient(circle, rgba(255,82,54,0.15) 0%, transparent 70%)"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center">
+
+      <!-- Live badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-badge mb-8 fade-in-up">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+        </span>
+        <span class="text-xs font-medium tracking-wide text-gray-300 uppercase">Live &mdash; Philippines Intelligence</span>
+      </div>
+
+      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-[1.05] mb-6 max-w-4xl text-balance fade-in-up fade-in-up-delay-1">
+        Everything you need.<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">In one glance.</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-400 font-sans max-w-2xl mb-10 leading-relaxed text-balance fade-in-up fade-in-up-delay-2">
+        Weather, fuel prices, earthquakes, news, live TV, toll fees, and AI-powered insights &mdash; all in one Philippine dashboard. No drama. No bloat. Only what matters.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 mb-20 fade-in-up fade-in-up-delay-3">
+        <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand text-white font-medium hover:bg-[#ff6b54] transition-all transform hover:scale-[1.02] shadow-[0_0_40px_-10px_rgba(255,82,54,0.5)]">
+          <i class="ph-fill ph-apple-logo text-2xl"></i>
+          <div class="text-left">
+            <div class="text-[10px] uppercase tracking-wider opacity-80 leading-none mb-1">Download on the</div>
+            <div class="text-sm font-semibold leading-none">App Store</div>
           </div>
-          <h1 class="hero-title">
-            Know what matters.<br>
-            <span class="accent">Skip the noise.</span>
-          </h1>
-          <p class="hero-subtitle">
-            Real-time Philippine news, weather alerts, fuel prices, toll fees, live TV, and AI chat. One app. No drama. No bloat. Only what you need.
-          </p>
-          <div class="hero-ctas">
-            <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="btn-primary" aria-label="Download PulseBoard on the App Store">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="btn-secondary" aria-label="Get PulseBoard on Google Play">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329a1 1 0 0 1 0 1.726l-2.302 1.329-2.541-2.542 2.541-2.542zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
-              Google Play
-            </a>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand text-white font-medium hover:bg-[#ff6b54] transition-all transform hover:scale-[1.02] shadow-[0_0_40px_-10px_rgba(255,82,54,0.5)]">
+          <i class="ph-fill ph-google-play-logo text-2xl"></i>
+          <div class="text-left">
+            <div class="text-[10px] uppercase tracking-wider opacity-80 leading-none mb-1">Get it on</div>
+            <div class="text-sm font-semibold leading-none">Google Play</div>
           </div>
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-value">10+</span>
-              <span class="hero-stat-label">Live data widgets</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-value">7</span>
-              <span class="hero-stat-label">Live TV channels</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-value">24/7</span>
-              <span class="hero-stat-label">Auto-updated</span>
-            </div>
+        </a>
+        <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-surface border border-white/5 text-white font-medium hover:bg-surface-raised transition-all">
+          Explore Features
+          <i class="ph ph-arrow-down text-gray-400"></i>
+        </a>
+      </div>
+
+      <!-- Widget Showcase — overlapping cascade -->
+      <div class="relative w-full max-w-6xl mx-auto mt-12 mb-4">
+        <!-- Center glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <!-- Row 1: 3 main widgets -->
+        <div class="relative flex justify-center gap-4 md:gap-6 mb-4 md:mb-6">
+          <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float -rotate-2 hover:rotate-0 transition-transform duration-500">
+            <img src="weather.jpg" alt="Weather" class="w-full h-auto block">
+          </div>
+          <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 z-10 scale-105 hover:scale-110 transition-transform duration-500">
+            <img src="fuel-prices.jpg" alt="Fuel Prices" class="w-full h-auto block">
+          </div>
+          <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-2 hover:rotate-0 transition-transform duration-500">
+            <img src="earthquake.jpg" alt="Earthquakes" class="w-full h-auto block">
           </div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <img src="screenshot.png" alt="PulseBoard app screenshot" class="hero-screenshot" />
+        <!-- Row 2: 4 widgets -->
+        <div class="relative flex justify-center gap-4 md:gap-6 mb-4 md:mb-6">
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d3 -rotate-1 hover:rotate-0 transition-transform duration-500">
+            <img src="news.jpg" alt="News" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float rotate-1 hover:rotate-0 transition-transform duration-500">
+            <img src="live-tv.jpg" alt="Live TV" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 -rotate-1 hover:rotate-0 transition-transform duration-500">
+            <img src="alerts.jpg" alt="Alerts" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-1 hover:rotate-0 transition-transform duration-500">
+            <img src="market-radar.jpg" alt="Market Radar" class="w-full h-auto block">
+          </div>
         </div>
+
+        <!-- Row 3: 4 widgets, faded to create depth -->
+        <div class="relative flex justify-center gap-4 md:gap-6 opacity-70">
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float -rotate-1">
+            <img src="toll-fees.jpg" alt="Toll Fees" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d3 rotate-1">
+            <img src="number-coding.jpg" alt="Number Coding" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 -rotate-1">
+            <img src="flight-tracker.jpg" alt="Flight Tracker" class="w-full h-auto block">
+          </div>
+          <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-1">
+            <img src="daily-essentials.jpg" alt="Daily Essentials" class="w-full h-auto block">
+          </div>
+        </div>
+
+        <!-- Bottom fade gradient -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none"></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ TRUST BAR ============ -->
-  <section class="trust-bar reveal" aria-label="Key features summary">
-    <div class="trust-label">Built for Filipinos, updated every minute</div>
-    <div class="trust-items">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        Real-time data
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No tracking, no ads
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        iOS and Android
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Alerts in 3 minutes
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        AI-powered chat
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ FEATURES ============ -->
-  <section class="features" id="features" aria-label="Features">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          Features
+  <!-- ═══════════════════════════════════════════
+       FEATURES BENTO GRID
+       ═══════════════════════════════════════════ -->
+  <section id="features" class="py-24 lg:py-32 relative bg-void border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="max-w-2xl">
+          <h2 class="font-display text-4xl lg:text-5xl font-semibold tracking-tight mb-4 text-balance">Built for clarity. Designed for speed.</h2>
+          <p class="text-gray-400 text-lg leading-relaxed">Stop compiling data from ten different apps. PulseBoard creates a unified intelligence layer built specifically for the Philippines.</p>
         </div>
-        <h2 class="section-title">Everything you need to know.<br>Nothing you don't.</h2>
-        <p class="section-subtitle">PulseBoard pulls from official Philippine data sources and turns them into clear, glanceable widgets. No scrolling through feeds. No clickbait.</p>
-      </div>
-
-      <div class="features-grid">
-        <!-- Live News Feed -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 0ms">
-          <div class="feature-preview">
-            <img src="news.png" alt="Live News Feed screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,82,54,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF5236" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
-            </div>
-            <h3 class="feature-name">Live News Feed</h3>
-            <p class="feature-desc">Aggregated from PhilStar, Manila Times, Inquirer, and more. Sorted by what matters, not what gets clicks.</p>
-            <span class="feature-tag live">
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-              Auto-updating
-            </span>
-          </div>
-        </div>
-
-        <!-- Disaster Alerts -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 80ms">
-          <div class="feature-preview">
-            <img src="alerts.png" alt="Disaster Alerts screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,69,58,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF453A" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </div>
-            <h3 class="feature-name">Disaster Alerts</h3>
-            <p class="feature-desc">PAGASA weather warnings, USGS earthquakes, GDACS alerts, and Rappler breaking updates. Notifications within 3 minutes.</p>
-            <span class="feature-tag live">
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-              Real-time
-            </span>
-          </div>
-        </div>
-
-        <!-- Weather -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 160ms">
-          <div class="feature-preview">
-            <img src="weather.png" alt="Weather screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(10,132,255,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
-            </div>
-            <h3 class="feature-name">Weather</h3>
-            <p class="feature-desc">Current conditions and forecast for your area. Written in plain language. "No rain today" instead of raw data dumps.</p>
-          </div>
-        </div>
-
-        <!-- Fuel Prices -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 240ms">
-          <div class="feature-preview">
-            <img src="fuel-prices.png" alt="Fuel Prices screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,159,10,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF9F0A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 class="feature-name">Fuel Prices</h3>
-            <p class="feature-desc">Weekly price movements for gasoline, diesel, and kerosene across Metro Manila. Historical sparklines show the trend.</p>
-          </div>
-        </div>
-
-        <!-- Market Radar -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 320ms">
-          <div class="feature-preview">
-            <img src="market-radar.png" alt="Market Radar screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(50,215,75,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 class="feature-name">Market Radar</h3>
-            <p class="feature-desc">Track USD/PHP, PSEi, BTC, Gold, and Brent Oil. Live sparklines and trends.</p>
-          </div>
-        </div>
-
-        <!-- Daily Essentials -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 400ms">
-          <div class="feature-preview">
-            <img src="daily-essentials.png" alt="Daily Essentials screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,159,10,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF9F0A" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            </div>
-            <h3 class="feature-name">Daily Essentials</h3>
-            <p class="feature-desc">Rice, electricity, jeepney fare, eggs. Updated weekly from official PH sources.</p>
-          </div>
-        </div>
-
-        <!-- Toll Fees -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 480ms">
-          <div class="feature-preview">
-            <img src="toll-fees.png" alt="Toll Fees screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(142,142,147,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8 8l8 8"/></svg>
-            </div>
-            <h3 class="feature-name">Toll Fees</h3>
-            <p class="feature-desc">160+ routes across 10 expressways. NLEX, SLEX, TPLEX, SCTEX, CALAX, and more. Search your route, get the price instantly.</p>
-          </div>
-        </div>
-
-        <!-- Live TV -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 560ms">
-          <div class="feature-preview">
-            <img src="live-tv.png" alt="Live TV screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(50,215,75,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
-            </div>
-            <h3 class="feature-name">Live TV</h3>
-            <p class="feature-desc">Watch GMA, ABS-CBN, PTV, DZBB, DZMM, DZRH, and News5 directly inside the app. No browser needed.</p>
-            <span class="feature-tag pro">Pro</span>
-          </div>
-        </div>
-
-        <!-- Pulse AI -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 640ms">
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,82,54,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF5236" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3 class="feature-name">Pulse AI</h3>
-            <p class="feature-desc">Ask anything about today's news, weather, prices, or alerts. Get straight answers powered by your real-time data, not the internet.</p>
-            <span class="feature-tag">AI-powered</span>
-          </div>
-        </div>
-
-        <!-- Number Coding -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 720ms">
-          <div class="feature-preview">
-            <img src="number-coding.png" alt="Number Coding screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(142,142,147,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <h3 class="feature-name">Number Coding</h3>
-            <p class="feature-desc">Instantly check if your plate number is coding today. Covers Metro Manila's Unified Vehicular Volume Reduction Programme.</p>
-          </div>
-        </div>
-
-        <!-- Earthquake -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 800ms">
-          <div class="feature-preview">
-            <img src="earthquake.png" alt="Earthquake screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(255,69,58,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF453A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 class="feature-name">Earthquake</h3>
-            <p class="feature-desc">Real-time USGS earthquake data for the Philippines. Magnitude, depth, location.</p>
-          </div>
-        </div>
-
-        <!-- Flight Tracker -->
-        <div class="feature-card reveal-stagger" style="transition-delay: 880ms">
-          <div class="feature-preview">
-            <img src="flight-tracker.png" alt="Flight Tracker screenshot" class="feature-img" />
-          </div>
-          <div class="feature-body">
-            <div class="feature-icon" style="background: rgba(10,132,255,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-            </div>
-            <h3 class="feature-name">Flight Tracker</h3>
-            <p class="feature-desc">Track flights over the Philippines in real time.</p>
-          </div>
+        <div class="flex items-center gap-3 bg-surface-raised px-4 py-2 rounded-full border border-white/5 text-sm font-medium shrink-0">
+          <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+          Real-time data
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="how-it-works reveal" aria-label="How it works">
-    <div class="container">
-      <div class="section-label">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        How it works
-      </div>
-      <h2 class="section-title">Set up in 30 seconds. Stay informed forever.</h2>
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
 
-      <div class="steps">
-        <div class="step reveal-stagger" style="transition-delay: 0ms">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Download and sign up</h3>
-          <p class="step-desc">Create a free account with Google, Apple, or email. No credit card required. Start with a 7-day Pro trial.</p>
-        </div>
-        <div class="step reveal-stagger" style="transition-delay: 100ms">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Pick your widgets</h3>
-          <p class="step-desc">Enable the data you care about. News, weather, fuel, tolls, alerts, live TV, and more. Drag to reorder.</p>
-        </div>
-        <div class="step reveal-stagger" style="transition-delay: 200ms">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Stay ahead, effortlessly</h3>
-          <p class="step-desc">Everything auto-updates. Get push notifications for what matters. Ask Pulse AI when you need deeper answers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ AI SECTION ============ -->
-  <section class="ai-section" aria-label="Pulse AI feature">
-    <div class="container">
-      <div class="ai-inner">
-        <div class="reveal">
-          <div class="section-label">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            Pulse AI
+        <!-- Card 1: Weather & Alerts (spans 2) -->
+        <div class="md:col-span-2 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden group hover:bg-[#161616] transition-colors duration-500">
+          <div class="absolute right-8 bottom-8 w-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl opacity-60 group-hover:opacity-90 transition-opacity hidden md:block">
+            <img src="alerts.jpg" alt="Alerts Widget" class="w-full">
           </div>
-          <h2 class="section-title">Ask anything about<br>what's happening today.</h2>
-          <p class="section-subtitle">Pulse AI reads your real-time widget data and gives straight, sourced answers. No hallucinations. No internet guessing. Just your data, explained.</p>
-          <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 24px;">Free users get 2 chats per day. Pro gets unlimited.</p>
-        </div>
-
-        <div class="ai-chat-demo reveal" style="transition-delay: 200ms">
-          <div class="ai-chat-header">
-            <div class="ai-chat-avatar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="relative z-10 h-full flex flex-col justify-between max-w-sm">
+            <div class="w-12 h-12 rounded-2xl bg-surface border border-white/10 flex items-center justify-center text-white mb-6">
+              <i class="ph ph-cloud-lightning text-xl"></i>
             </div>
             <div>
-              <div class="ai-chat-name">Pulse AI</div>
-              <div class="ai-chat-status">Online</div>
+              <h3 class="font-display text-2xl font-semibold mb-2">Weather & Alerts</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">Real-time PAGASA weather, PHIVOLCS earthquake alerts, and NDRRMC advisories. Know before the news does.</p>
             </div>
           </div>
-          <div class="chat-bubble user">Will it rain in Manila today?</div>
-          <div class="chat-bubble ai">Based on current PAGASA data, no rain is expected in Metro Manila today. Partly cloudy skies with temperatures between 28-34°C. The southwest monsoon is affecting Visayas but not Luzon at this time.</div>
-          <div class="chat-bubble user">How much is diesel this week?</div>
-          <div class="chat-bubble ai">Diesel is currently at &#8369;65.40/L in Metro Manila, down &#8369;0.80 from last week. This is the second consecutive week of rollbacks.</div>
+        </div>
+
+        <!-- Card 2: Fuel & Toll -->
+        <div class="md:col-span-1 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-b from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-surface border border-white/10 flex items-center justify-center text-white">
+                  <i class="ph ph-gas-pump text-xl"></i>
+                </div>
+                <div class="px-2 py-1 bg-brand/10 text-brand text-[10px] font-bold uppercase rounded">Live prices</div>
+              </div>
+              <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg mb-4">
+                <img src="fuel-prices.jpg" alt="Fuel Prices" class="w-full">
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold mb-2">Fuel & Tolls</h3>
+              <p class="text-gray-400 text-sm">Live gas prices and NLEX/SLEX toll calculators.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: AI Intel -->
+        <div id="ai" class="md:col-span-1 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-2xl rounded-full"></div>
+          <div class="relative z-10 h-full flex flex-col justify-between">
+            <div class="space-y-3 mb-6">
+              <div class="flex gap-2">
+                <div class="w-6 h-6 rounded-full bg-surface"></div>
+                <div class="bg-surface border border-white/5 py-2 px-3 rounded-2xl rounded-tl-none text-xs text-gray-300 w-fit max-w-[85%]">Any coding suspensions in Manila today?</div>
+              </div>
+              <div class="flex gap-2 justify-end">
+                <div class="bg-brand/20 border border-brand/30 py-2 px-3 rounded-2xl rounded-tr-none text-xs text-white w-fit max-w-[85%]">No suspensions today. Standard number coding is in effect for plates ending in 1 & 2.</div>
+                <div class="w-6 h-6 rounded-full bg-brand flex items-center justify-center text-[10px]"><i class="ph-fill ph-sparkle"></i></div>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold mb-2">Pulse AI</h3>
+              <p class="text-gray-400 text-sm">Ask anything about the Philippines. Powered by real-time data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Live TV & News (spans 2) -->
+        <div class="md:col-span-2 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden flex flex-col md:flex-row gap-8 items-center group">
+          <div class="relative w-full md:w-1/2 rounded-xl overflow-hidden border border-white/10 shadow-2xl z-10">
+            <img src="live-tv.jpg" alt="Live TV Widget" class="w-full">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-red-600 rounded text-[9px] font-bold uppercase tracking-wider text-white">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              Live
+            </div>
+          </div>
+          <div class="relative z-10 flex flex-col justify-center w-full md:w-1/2">
+            <div class="w-12 h-12 rounded-2xl bg-surface border border-white/10 flex items-center justify-center text-white mb-6">
+              <i class="ph ph-monitor-play text-xl"></i>
+            </div>
+            <h3 class="font-display text-2xl font-semibold mb-2">Live TV & News</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">Watch PTV4, ANC, GMA News, and more &mdash; directly in the app. Plus real-time headlines from Rappler, Inquirer, and Manila Bulletin.</p>
+            <div class="flex gap-2 flex-wrap">
+              <div class="px-3 py-1 rounded-lg bg-surface border border-white/5 text-[11px] text-gray-500">PTV4</div>
+              <div class="px-3 py-1 rounded-lg bg-surface border border-white/5 text-[11px] text-gray-500">ANC</div>
+              <div class="px-3 py-1 rounded-lg bg-surface border border-white/5 text-[11px] text-gray-500">GMA News</div>
+              <div class="px-3 py-1 rounded-lg bg-surface border border-white/5 text-[11px] text-gray-500">Rappler</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       WIDGET SHOWCASE
+       ═══════════════════════════════════════════ -->
+  <section id="widgets" class="py-24 lg:py-32 bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-semibold tracking-tight mb-4">11 widgets. One dashboard.</h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Every widget answers a question in 2 seconds or less. Customize what you see, hide what you don't.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="weather.jpg" alt="Weather" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-sun text-brand"></i>
+              <span class="font-display font-semibold text-sm">Weather</span>
+            </div>
+            <p class="text-xs text-gray-500">Current conditions & forecast</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="news.jpg" alt="News" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-newspaper text-brand"></i>
+              <span class="font-display font-semibold text-sm">Live News</span>
+            </div>
+            <p class="text-xs text-gray-500">Headlines from top PH outlets</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="fuel-prices.jpg" alt="Fuel" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-gas-pump text-brand"></i>
+              <span class="font-display font-semibold text-sm">Fuel Prices</span>
+            </div>
+            <p class="text-xs text-gray-500">Gas, diesel, LPG prices</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="earthquake.jpg" alt="Earthquakes" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-activity text-brand"></i>
+              <span class="font-display font-semibold text-sm">Earthquakes</span>
+            </div>
+            <p class="text-xs text-gray-500">Seismic activity near PH</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="live-tv.jpg" alt="Live TV" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-monitor-play text-brand"></i>
+              <span class="font-display font-semibold text-sm">Live TV</span>
+            </div>
+            <p class="text-xs text-gray-500">PH news livestreams</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="alerts.jpg" alt="Alerts" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-warning text-brand"></i>
+              <span class="font-display font-semibold text-sm">Active Alerts</span>
+            </div>
+            <p class="text-xs text-gray-500">Weather warnings & advisories</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="toll-fees.jpg" alt="Toll Fees" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-car text-brand"></i>
+              <span class="font-display font-semibold text-sm">Toll Fees</span>
+            </div>
+            <p class="text-xs text-gray-500">NLEX, SLEX, Skyway rates</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="market-radar.jpg" alt="Market Radar" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-trend-up text-brand"></i>
+              <span class="font-display font-semibold text-sm">Market Radar</span>
+            </div>
+            <p class="text-xs text-gray-500">PSEi, forex, crypto</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="number-coding.jpg" alt="Number Coding" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-hash text-brand"></i>
+              <span class="font-display font-semibold text-sm">Number Coding</span>
+            </div>
+            <p class="text-xs text-gray-500">MMDA coding scheme</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="flight-tracker.jpg" alt="Flight Tracker" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-airplane text-brand"></i>
+              <span class="font-display font-semibold text-sm">Flight Tracker</span>
+            </div>
+            <p class="text-xs text-gray-500">PH airport arrivals & departures</p>
+          </div>
+        </div>
+
+        <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
+          <img src="daily-essentials.jpg" alt="Daily Essentials" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <div class="p-4">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="ph ph-shopping-cart text-brand"></i>
+              <span class="font-display font-semibold text-sm">Daily Essentials</span>
+            </div>
+            <p class="text-xs text-gray-500">Rice, electricity, jeepney, eggs</p>
+          </div>
+        </div>
+
+        <!-- Pro card -->
+        <div class="bg-gradient-to-br from-brand/10 to-[#111] rounded-2xl border border-brand/20 overflow-hidden flex flex-col items-center justify-center p-6 text-center">
+          <i class="ph-fill ph-lightning text-brand text-3xl mb-3"></i>
+          <span class="font-display font-semibold text-sm mb-1">PulseBoard Pro</span>
+          <p class="text-xs text-gray-400 mb-4">Unlimited widgets, AI chat, and live TV</p>
+          <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="text-xs font-semibold text-brand hover:text-white transition-colors">Get Pro &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FINAL CTA ============ -->
-  <section class="cta-section" aria-label="Download">
-    <div class="container">
-      <h2 class="cta-title reveal">Ready to know what matters?</h2>
-      <p class="cta-subtitle reveal" style="transition-delay: 100ms">Free to download. No ads. No tracking. Just clarity.</p>
-      <div class="cta-buttons reveal" style="transition-delay: 200ms">
-        <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          Download for iOS
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329a1 1 0 0 1 0 1.726l-2.302 1.329-2.541-2.542 2.541-2.542zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
-          Get on Google Play
-        </a>
+
+  <!-- ═══════════════════════════════════════════
+       STATS
+       ═══════════════════════════════════════════ -->
+  <section class="py-24 lg:py-32 bg-void relative border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 md:divide-x divide-white/5">
+        <div class="flex flex-col md:px-8">
+          <span class="font-display text-5xl md:text-6xl font-semibold text-white tracking-tighter mb-2">11</span>
+          <span class="text-sm text-gray-500 font-medium uppercase tracking-widest">Live Widgets</span>
+        </div>
+        <div class="flex flex-col md:px-8">
+          <span class="font-display text-5xl md:text-6xl font-semibold text-white tracking-tighter mb-2">Zero</span>
+          <span class="text-sm text-gray-500 font-medium uppercase tracking-widest">Ads & Trackers</span>
+        </div>
+        <div class="flex flex-col md:px-8">
+          <span class="font-display text-5xl md:text-6xl font-semibold text-white tracking-tighter mb-2">17</span>
+          <span class="text-sm text-gray-500 font-medium uppercase tracking-widest">Regions Covered</span>
+        </div>
+        <div class="flex flex-col md:px-8">
+          <span class="font-display text-5xl md:text-6xl font-semibold text-white tracking-tighter mb-2">24<span class="text-brand">/</span>7</span>
+          <span class="text-sm text-gray-500 font-medium uppercase tracking-widest">Always On</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <img src="logo.svg" alt="PulseBoard" class="footer-logo-img" />
-          <span><strong>PulseBoard</strong> by Allelic Media</span>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════ -->
+  <section class="relative py-32 overflow-hidden bg-void">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-brand opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <h2 class="font-display text-4xl md:text-6xl font-semibold tracking-tight mb-6 text-white text-balance">
+        Stop searching.<br>Start knowing.
+      </h2>
+      <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+        Join thousands of Filipinos who upgraded to a noise-free, real-time daily dashboard.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full bg-white text-black font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          <i class="ph-fill ph-apple-logo text-2xl"></i>
+          <div class="text-left flex flex-col justify-center">
+            <span class="text-[10px] uppercase tracking-wide opacity-60 leading-none mb-1">Download on the</span>
+            <span class="text-base leading-none">App Store</span>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full bg-white text-black font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          <i class="ph-fill ph-google-play-logo text-2xl"></i>
+          <div class="text-left flex flex-col justify-center">
+            <span class="text-[10px] uppercase tracking-wide opacity-60 leading-none mb-1">Get it on</span>
+            <span class="text-base leading-none">Google Play</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center gap-4 text-xs text-gray-500 font-medium flex-wrap">
+        <div class="flex items-center gap-1"><i class="ph-fill ph-shield-check text-brand"></i> Privacy-first</div>
+        <div class="w-1 h-1 rounded-full bg-gray-700"></div>
+        <div>Free to download</div>
+        <div class="w-1 h-1 rounded-full bg-gray-700"></div>
+        <div>Requires iOS 16.0+</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 bg-[#050505] pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="24" height="21" viewBox="0 0 540 468" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M257.938 401.29H257.419H257.362L257.394 401.348L257.938 401.29Z" fill="#FF5236"/>
+              <path d="M257.938 401.29L257.394 401.348L241.588 438.34L228.923 467.979H229.167H294.464H299.114H401.197L402.991 467.969C478.823 467.006 540 405.089 540 328.85C540 267.981 501.003 216.242 446.685 197.365L495.191 164.652L495.097 89.2216L417.183 87.2858L360.455 170.021C349.461 164.175 337.638 159.667 325.205 156.712L345.071 53.2716L306.985 18.1906L288.597 0L234.751 53.2716L254.673 157.009C241.465 160.267 228.957 165.282 217.417 171.791L159.699 88.2357H81.598V164.654L165.292 221.099C158.21 232.189 152.584 244.284 148.681 257.12L53.7139 239.181L0 295.19L53.7139 348.593L145.821 331.193C148.776 344.574 153.57 357.272 159.927 369.015L84.1618 420.112L84.1315 443.19L84.0956 443.221L84.1618 467.969L110.133 468L110.152 467.98L161.608 468L276.609 256.801H313.56H401.197C413.251 256.801 424.611 259.775 434.589 265.031C457.471 277.085 473.077 301.141 473.077 328.85C473.077 368.642 446.422 401.348 406.723 401.348H398.106H328.021L258.458 401.29H257.938Z" fill="#FF5236"/>
+            </svg>
+            <span class="font-display font-semibold text-lg tracking-tight">
+              <span class="text-brand">Pulse</span><span class="text-gray-300">Board</span>
+            </span>
+          </div>
+          <p class="text-sm text-gray-500 max-w-xs">The real-time intelligence dashboard for the modern Filipino.</p>
         </div>
-        <div class="footer-links">
-          <a href="https://dnyeldev.github.io/pulseboard-legal/" class="footer-link">Privacy Policy</a>
-          <a href="https://dnyeldev.github.io/pulseboard-legal/" class="footer-link">Terms of Service</a>
-          <a href="mailto:daniel@allelicmedia.com" class="footer-link">Contact</a>
+
+        <div class="flex gap-16">
+          <div class="flex flex-col gap-3">
+            <span class="text-white font-semibold text-sm mb-1">Product</span>
+            <a href="#features" class="text-sm text-gray-500 hover:text-brand transition-colors">Features</a>
+            <a href="#widgets" class="text-sm text-gray-500 hover:text-brand transition-colors">Widgets</a>
+            <a href="#ai" class="text-sm text-gray-500 hover:text-brand transition-colors">Pulse AI</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <span class="text-white font-semibold text-sm mb-1">Legal</span>
+            <a href="https://dnyeldev.github.io/pulseboard-legal/privacy-policy.html" class="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+            <a href="https://dnyeldev.github.io/pulseboard-legal/terms-of-service.html" class="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <span class="text-white font-semibold text-sm mb-1">Connect</span>
+            <a href="https://instagram.com/pulseboardph" class="text-sm text-gray-500 hover:text-white transition-colors">Instagram</a>
+            <a href="https://facebook.com/PulseBoardPH" class="text-sm text-gray-500 hover:text-white transition-colors">Facebook</a>
+            <a href="mailto:daniel@allelicmedia.com" class="text-sm text-gray-500 hover:text-white transition-colors">Contact</a>
+          </div>
         </div>
       </div>
-      <div class="footer-copy">
-        &copy; 2026 Allelic Media. All rights reserved.
+
+      <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-xs text-gray-600">
+        <p>&copy; 2026 PulseBoard. Manila, Philippines.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="https://instagram.com/pulseboardph" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo text-lg"></i></a>
+          <a href="https://facebook.com/PulseBoardPH" class="hover:text-white transition-colors"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- ============ SCRIPTS ============ -->
-  <script>
-    // Scroll-based nav background
-    const nav = document.querySelector('.nav');
-    const handleScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // Intersection Observer for reveal animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-      revealObserver.observe(el);
-    });
-  </script>
 </body>
 </html>
