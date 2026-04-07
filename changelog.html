@@ -703,51 +703,291 @@ body {
 </section>
 
 <!-- v1.0.3 -->
-<section class="patch" id="v103" style="padding-bottom: 80px;">
+<section class="patch" id="v103">
   <div class="patch-header">
     <span class="patch-version">v1.0.3</span>
     <span class="patch-date">March 2026</span>
   </div>
-  <p class="patch-codename">Stability fixes and polish.</p>
+  <p class="patch-codename">Stability and polish before the big one.</p>
 
   <div class="stats-bar">
     <div class="stat">
+      <div class="stat-dot" style="background: var(--green);"></div>
+      <span class="stat-value">3</span>
+      <span class="stat-label">new</span>
+    </div>
+    <div class="stat">
       <div class="stat-dot" style="background: var(--blue);"></div>
-      <span class="stat-value">8</span>
+      <span class="stat-value">3</span>
       <span class="stat-label">fixes</span>
     </div>
     <div class="stat">
       <div class="stat-dot" style="background: var(--amber);"></div>
-      <span class="stat-value">3</span>
+      <span class="stat-value">2</span>
       <span class="stat-label">changes</span>
     </div>
   </div>
 
   <div class="category">
     <div class="category-header">
-      <div class="category-icon gray">&#9679;</div>
-      <span class="category-title gray">General</span>
+      <div class="category-icon blue">&#9672;</div>
+      <span class="category-title blue">Widgets</span>
     </div>
     <div class="changes">
       <div class="change">
         <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Dark mode white flash on launch. Added <code>expo-system-ui</code> plugin and <code>Appearance.setColorScheme('dark')</code>.</span>
+        <span class="change-text">Dark mode white flash on launch eliminated.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Widget card styling unified. <code>#0B0B0B</code> background, 1px <code>#2C2C2E</code> border, subtle bottom glow.</span>
+        <span class="change-text">Widget card styling unified across all widgets.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Fuel prices overhauled with per-brand pricing and sparkline data.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon green">&#9672;</div>
+      <span class="category-title green">Live TV</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Inline video playback directly in the widget.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">6 channels: GMA, ABS-CBN, PTV, DZBB, DZMM, DZRH.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Automated live stream detection refreshes every 5 minutes.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon gray">&#9679;</div>
+      <span class="category-title gray">Infrastructure</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Email delivery migrated to Resend. 6-digit OTP verification working.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Fuel prices: per-brand crisis pricing overhaul.</span>
+        <span class="change-text">Email confirmation flow stabilized.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- v1.0.2 -->
+<section class="patch" id="v102">
+  <div class="patch-header">
+    <span class="patch-version">v1.0.2</span>
+    <span class="patch-date">March 2026</span>
+  </div>
+  <p class="patch-codename">Getting store-ready.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--green);"></div>
+      <span class="stat-value">3</span>
+      <span class="stat-label">new</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--blue);"></div>
+      <span class="stat-value">2</span>
+      <span class="stat-label">fixes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--amber);"></div>
+      <span class="stat-value">1</span>
+      <span class="stat-label">change</span>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon green">&#9672;</div>
+      <span class="category-title green">UI/UX</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Guest mode. Explore the app before signing up.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Delete account page for App Store compliance.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Map widget removed permanently. Replaced with Coming Soon placeholder.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon gray">&#9679;</div>
+      <span class="category-title gray">Infrastructure</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Privacy Policy and Terms of Service pages published.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Live TV: inline WebView playback via YouTube IFrame API.</span>
+        <span class="change-text">Push notification certificates configured for iOS.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">App Store submission completed and approved.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- v1.0.1 -->
+<section class="patch" id="v101">
+  <div class="patch-header">
+    <span class="patch-version">v1.0.1</span>
+    <span class="patch-date">February 2026</span>
+  </div>
+  <p class="patch-codename">First fixes.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--blue);"></div>
+      <span class="stat-value">3</span>
+      <span class="stat-label">fixes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--amber);"></div>
+      <span class="stat-value">2</span>
+      <span class="stat-label">changes</span>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon blue">&#9672;</div>
+      <span class="category-title blue">Widgets</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Weather widget tap-to-expand layout issues resolved.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Alert card borders and spacing inconsistencies fixed.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Guest banner display issues on home screen.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon green">&#9672;</div>
+      <span class="category-title green">UI/UX</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Top nav simplified to logo only. Removed hamburger and action icons.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Supabase SMTP: migrated to Resend. 6-digit OTP working.</span>
+        <span class="change-text">All settings moved to More tab for cleaner navigation.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- v1.0.0 -->
+<section class="patch" id="v100" style="padding-bottom: 80px;">
+  <div class="patch-header">
+    <span class="patch-version">v1.0.0</span>
+    <span class="patch-date">February 2026</span>
+  </div>
+  <p class="patch-codename">Day one.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--green);"></div>
+      <span class="stat-value">8</span>
+      <span class="stat-label">new</span>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon red">&#9672;</div>
+      <span class="category-title red">Core</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">PulseBoard launched. Real-time Philippine intelligence dashboard.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">8 widgets: Weather, Alerts, Fuel Prices, Live News, Number Coding, Market Radar, Earthquake, Flight Tracker.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Pulse AI chat. Ask anything about Philippine data.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon green">&#9672;</div>
+      <span class="category-title green">UI/UX</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Dark-only design. Samsung Now Brief-style glanceability.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Skeleton loading states and pull-to-refresh on all widgets.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Widget Manager to toggle widgets on and off.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon gray">&#9679;</div>
+      <span class="category-title gray">Auth</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Email + OTP authentication. Apple Sign-In and Google Sign-In.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Guest mode for exploring without an account.</span>
       </div>
     </div>
   </div>
