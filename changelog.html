@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseBoard - Changelog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=General+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --surface: #0A0A0A;
+  --surface-2: #111111;
+  --border: #1C1C1E;
+  --border-subtle: rgba(255,255,255,0.06);
+  --text-primary: #FFFFFF;
+  --text-secondary: #8E8E93;
+  --text-muted: #48484A;
+  --red: #FF5236;
+  --red-dim: rgba(255,82,54,0.1);
+  --red-glow: rgba(255,82,54,0.04);
+  --blue: #0A84FF;
+  --blue-dim: rgba(10,132,255,0.1);
+  --green: #34C759;
+  --green-dim: rgba(50,215,75,0.1);
+  --amber: #FF9F0A;
+  --amber-dim: rgba(255,159,10,0.1);
+  --purple: #BF5AF2;
+  --purple-dim: rgba(191,90,242,0.1);
+  --gray: #636366;
+  --gray-dim: rgba(142,142,147,0.08);
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --font-sans: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2C2C2E; border-radius: 3px; }
+
+/* Nav */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.nav-brand img { height: 24px; width: auto; }
+.nav-brand span { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a.active { color: var(--red); }
+
+/* Hero */
+.hero {
+  padding: 140px 32px 60px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  display: inline-block;
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+/* Version selector */
+.version-nav {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px 40px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.version-pill {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.version-pill:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.version-pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+/* Patch container */
+.patch {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+}
+
+/* Patch header */
+.patch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.patch-version {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.patch-date {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.patch-codename {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  padding-top: 8px;
+}
+
+/* Category sections */
+.category {
+  margin-bottom: 40px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.category-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.category-icon.red { background: var(--red-dim); color: var(--red); }
+.category-icon.blue { background: var(--blue-dim); color: var(--blue); }
+.category-icon.green { background: var(--green-dim); color: var(--green); }
+.category-icon.amber { background: var(--amber-dim); color: var(--amber); }
+.category-icon.purple { background: var(--purple-dim); color: var(--purple); }
+.category-icon.gray { background: var(--gray-dim); color: var(--gray); }
+
+.category-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.category-title.red { color: var(--red); }
+.category-title.blue { color: var(--blue); }
+.category-title.green { color: var(--green); }
+.category-title.amber { color: var(--amber); }
+.category-title.purple { color: var(--purple); }
+.category-title.gray { color: var(--gray); }
+
+/* Change items */
+.changes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.change {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--border-subtle);
+  align-items: baseline;
+}
+
+.change:last-child { border-bottom: none; }
+
+.change-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  min-width: 48px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.tag-new { background: var(--green-dim); color: var(--green); }
+.tag-fix { background: var(--blue-dim); color: var(--blue); }
+.tag-change { background: var(--amber-dim); color: var(--amber); }
+.tag-remove { background: rgba(255,69,58,0.1); color: #FF453A; }
+.tag-perf { background: var(--purple-dim); color: var(--purple); }
+.tag-security { background: var(--red-dim); color: var(--red); }
+
+.change-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.change-text code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--amber);
+}
+
+.change-text .dim { color: var(--text-secondary); }
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  gap: 24px;
+  padding: 16px 0;
+  margin-bottom: 32px;
+  border-bottom: 0.5px solid var(--border-subtle);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px 60px;
+  text-align: center;
+}
+
+.footer-line {
+  height: 0.5px;
+  background: var(--border);
+  margin-bottom: 24px;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer a:hover { color: var(--red); }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nav { padding: 0 16px; }
+  .hero { padding: 120px 16px 40px; }
+  .hero h1 { font-size: 36px; }
+  .version-nav { padding: 0 16px 32px; }
+  .patch { padding: 0 16px 80px; }
+  .footer { padding: 0 16px 40px; }
+  .stats-bar { flex-wrap: wrap; gap: 12px; }
+  .patch-header { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="https://pulseboard.today" class="nav-brand">
+    <img src="logo.svg" alt="PulseBoard">
+    <span>PulseBoard</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://pulseboard.today">Home</a>
+    <a href="#" class="active">Changelog</a>
+    <a href="https://apps.apple.com/app/pulseboard/id6760928177">Download</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-label">Changelog</div>
+  <h1>What we shipped.</h1>
+  <p>Every update, every fix, every improvement. The nerdy details behind PulseBoard.</p>
+</section>
+
+<!-- Version nav -->
+<div class="version-nav">
+  <a href="#v110" class="version-pill active">v1.1.0</a>
+  <a href="#v103" class="version-pill">v1.0.3</a>
+  <a href="#v102" class="version-pill">v1.0.2</a>
+  <a href="#v101" class="version-pill">v1.0.1</a>
+  <a href="#v100" class="version-pill">v1.0.0</a>
+</div>
+
+<!-- v1.1.0 -->
+<section class="patch" id="v110">
+  <div class="patch-header">
+    <span class="patch-version">v1.1.0</span>
+    <span class="patch-date">April 2026</span>
+  </div>
+  <p class="patch-codename">The biggest update since launch. Smarter AI, more data, better everything.</p>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--green);"></div>
+      <span class="stat-value">24</span>
+      <span class="stat-label">new</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--blue);"></div>
+      <span class="stat-value">18</span>
+      <span class="stat-label">fixes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--amber);"></div>
+      <span class="stat-value">12</span>
+      <span class="stat-label">changes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--purple);"></div>
+      <span class="stat-value">6</span>
+      <span class="stat-label">perf</span>
+    </div>
+  </div>
+
+  <!-- Pulse AI -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon red">&#9672;</div>
+      <span class="category-title red">Pulse AI</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Structured fuel data cards. Prices render as visual tables with brand rows, change pills, and color-coded gasoline/diesel sections.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Contextual quick action pills. Follow-up suggestions adapt to the topic: fuel, weather, earthquakes, markets.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Typing indicator. Three-dot animation while AI processes your request.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Chat bubbles. User messages right-aligned with red tint, AI responses left-aligned with PulseBoard avatar.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Offline detection. <span class="dim">Shows "No connection" screen when offline, auto-dismissing banner when connection returns mid-chat.</span></span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Removed <code>refreshSession()</code> call on every AI message. Was eating 10s+ of the 15s timeout, causing "trouble connecting" errors.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Timeout increased from 15s to 30s. Claude API responses need room to breathe.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Errors now logged to Sentry instead of silently swallowed.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monetization -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon amber">&#9733;</div>
+      <span class="category-title amber">Monetization</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">7-day Pro trial. Opt-in with clear consent screen. No credit card required.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Smart paywalls. 6th widget and Pulse AI gated for free users. CTAs: guests see "Sign up free", free users see "Upgrade to Pro".</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Rate limiting. Guest/Free: 2 chats/day. Trial: 30/day. Pro: 50/day. Per-minute cap prevents abuse.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">500 character message cap. Silently truncated server-side. Character counter appears at 400+.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Subscription offline caching. Trial/Pro users keep access during network drops. 24h TTL before fallback to free.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Widgets -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon blue">&#9638;</div>
+      <span class="category-title blue">Widgets</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Toll Fees widget. 160+ routes across 10 expressways. Full TRB data in Supabase.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Daily Essentials widget. Rice, electricity, jeepney fare, eggs. 2x2 glass cards. Automated weekly via Edge Function.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Live TV: News5 added as 7th channel. Pinned column prevents cron overwrites.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Fuel Prices: 3-tier data sourcing. DOE official data first, 5 RSS feeds backup, brand websites fallback. Never stale again.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Fuel Prices: responsive font sizing via <code>scale()</code>. Prices fit on one line across all screen sizes.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Market Radar: USD/PHP as hero card with full-width layout. 2x2 grid below with BTC, Gold, PSEi, Brent Oil.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Weather widget: new layout with large temp, high/low arrows, humidity droplet.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Earthquakes: empty state when 0 quakes in 24h. No more showing 6-day-old data as if it's current.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Live TV: green dot only pulses when stream is actually live. No more false "online" indicators.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Alerts: PH-only filtering. No more Myanmar or Indonesia news showing up.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI/UX -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon green">&#9673;</div>
+      <span class="category-title green">UI / UX</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">4-screen onboarding flow for new users.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">App Store review prompt. Soft-ask modal filters bad reviews before triggering native prompt.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Hero section: 2-line greeting with name. Greeting pool capped at 2-3 words max. No more wrapping.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Nav pill: shows trial countdown, Pro badge, or upgrade prompt based on subscription tier.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Universal button system. Primary, secondary, destructive. Consistent across every screen.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Number Coding suspended state: amber <code>#FF9F0A</code> replaces yellow. Matches app palette.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Alert pills: sizing now matches widget pills. No more inconsistency.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Send Feedback now actually emails <code>daniel@allelicmedia.com</code>. Was opening Privacy Policy.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Rate buttons link to correct App Store / Play Store URLs on both platforms.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">About page: vector logo replaces text logo.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon purple">&#9670;</div>
+      <span class="category-title purple">Security &amp; Performance</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-security">Security</span>
+        <span class="change-text">XSS sanitization on Live TV <code>videoId</code> input.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-security">Security</span>
+        <span class="change-text">Removed dangerous "Auth write access" ALL policy on <code>live_tv_streams</code>. Any logged-in user could previously overwrite stream data.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-security">Security</span>
+        <span class="change-text">RLS verified on all 8 Supabase tables. <code>user_profiles</code> restricted to SELECT own data only.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Sentry crash monitoring. JS errors, native crashes, and performance tracking. Source maps for readable stack traces.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">Better Stack uptime monitoring. 4 Edge Function endpoints checked every 3 minutes.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-perf">Perf</span>
+        <span class="change-text"><code>fetchWithTimeout</code> on all external API calls. No more hanging requests.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-perf">Perf</span>
+        <span class="change-text">Stripped 68 <code>console.log</code> statements across 15 files.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-perf">Perf</span>
+        <span class="change-text">Deleted 4 unused components. 396 lines of dead code removed.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">SSO nonce mismatch. Google: enabled skip nonce checks. Apple: proper raw/hashed nonce handling via <code>expo-crypto</code>.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Pulse AI Edge Function 500. Env var name mismatch: code referenced <code>ANTHROPIC_API_KEY</code>, secret was <code>CLAUDE_API_KEY</code>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth -->
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon gray">&#9679;</div>
+      <span class="category-title gray">Infrastructure</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text"><code>ENV_VARS.md</code> documenting all 17 environment variables across 10 categories.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-new">New</span>
+        <span class="change-text">ErrorBoundary component. JS crashes show a recovery screen instead of a white screen of death.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">RevenueCat: lazy <code>require()</code> for all 6 calls. Updated to <code>react-native-purchases@9.15.1</code>. No more Expo Go crashes.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Fuel price idempotency guard. Same-date runs are skipped automatically. No more double-apply data corruption.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Google Sign-In: <code>isGoogleSignInAvailable</code> now actually checks the native module instead of returning true.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Fuel cache key fixed. Pulse AI can now read fuel data when answering price queries.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Region key conflict resolved. Weather and fuel no longer overwrite each other's user region.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- v1.0.3 -->
+<section class="patch" id="v103" style="padding-bottom: 80px;">
+  <div class="patch-header">
+    <span class="patch-version">v1.0.3</span>
+    <span class="patch-date">March 2026</span>
+  </div>
+  <p class="patch-codename">Stability fixes and polish.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--blue);"></div>
+      <span class="stat-value">8</span>
+      <span class="stat-label">fixes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--amber);"></div>
+      <span class="stat-value">3</span>
+      <span class="stat-label">changes</span>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon gray">&#9679;</div>
+      <span class="category-title gray">General</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Dark mode white flash on launch. Added <code>expo-system-ui</code> plugin and <code>Appearance.setColorScheme('dark')</code>.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Widget card styling unified. <code>#0B0B0B</code> background, 1px <code>#2C2C2E</code> border, subtle bottom glow.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Fuel prices: per-brand crisis pricing overhaul.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Live TV: inline WebView playback via YouTube IFrame API.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-change">Change</span>
+        <span class="change-text">Supabase SMTP: migrated to Resend. 6-digit OTP working.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-line"></div>
+  <p>PulseBoard by <a href="https://allelicmedia.com">Allelic Media</a>. Made in the Philippines.</p>
+</div>
+
+</body>
+</html>
