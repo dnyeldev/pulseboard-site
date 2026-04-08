@@ -415,35 +415,28 @@ body {
 <section class="patch" id="v110">
   <div class="patch-header">
     <span class="patch-version">v1.1.0</span>
-    <span class="patch-date">April 2026</span>
+    <span class="patch-date">April 8, 2026</span>
   </div>
-  <p class="patch-codename">The biggest update since launch. Smarter AI, more data, better everything.</p>
+  <p class="patch-codename">Smarter AI, better alerts, polished everything.</p>
 
-  <!-- Stats -->
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-dot" style="background: var(--green);"></div>
-      <span class="stat-value">24</span>
+      <span class="stat-value">3</span>
       <span class="stat-label">new</span>
     </div>
     <div class="stat">
       <div class="stat-dot" style="background: var(--blue);"></div>
-      <span class="stat-value">18</span>
+      <span class="stat-value">7</span>
       <span class="stat-label">fixes</span>
     </div>
     <div class="stat">
       <div class="stat-dot" style="background: var(--amber);"></div>
-      <span class="stat-value">12</span>
+      <span class="stat-value">3</span>
       <span class="stat-label">changes</span>
-    </div>
-    <div class="stat">
-      <div class="stat-dot" style="background: var(--purple);"></div>
-      <span class="stat-value">6</span>
-      <span class="stat-label">perf</span>
     </div>
   </div>
 
-  <!-- Pulse AI -->
   <div class="category">
     <div class="category-header">
       <div class="category-icon red">&#9672;</div>
@@ -452,120 +445,19 @@ body {
     <div class="changes">
       <div class="change">
         <span class="change-tag tag-new">New</span>
-        <span class="change-text">Structured fuel data cards. Prices render as visual tables with brand rows, change pills, and color-coded gasoline/diesel sections.</span>
+        <span class="change-text">Pulse AI now answers weather questions using your location data.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-new">New</span>
-        <span class="change-text">Contextual quick action pills. Follow-up suggestions adapt to the topic: fuel, weather, earthquakes, markets.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Typing indicator. Three-dot animation while AI processes your request.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Chat bubbles. User messages right-aligned with red tint, AI responses left-aligned with PulseBoard avatar.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Offline detection. <span class="dim">Shows "No connection" screen when offline, auto-dismissing banner when connection returns mid-chat.</span></span>
+        <span class="change-text">Character count indicator appears at 400+ characters in AI chat input.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Removed <code>refreshSession()</code> call on every AI message. Was eating 10s+ of the 15s timeout, causing "trouble connecting" errors.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Timeout increased from 15s to 30s. Claude API responses need room to breathe.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Errors now logged to Sentry instead of silently swallowed.</span>
+        <span class="change-text">Chat input no longer gets cut off by bottom navigation bar.</span>
       </div>
     </div>
   </div>
 
-  <!-- Monetization -->
-  <div class="category">
-    <div class="category-header">
-      <div class="category-icon amber">&#9733;</div>
-      <span class="category-title amber">Monetization</span>
-    </div>
-    <div class="changes">
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">7-day Pro trial. Opt-in with clear consent screen. No credit card required.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Smart paywalls. 6th widget and Pulse AI gated for free users. CTAs: guests see "Sign up free", free users see "Upgrade to Pro".</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Rate limiting. Guest/Free: 2 chats/day. Trial: 30/day. Pro: 50/day. Per-minute cap prevents abuse.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">500 character message cap. Silently truncated server-side. Character counter appears at 400+.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Subscription offline caching. Trial/Pro users keep access during network drops. 24h TTL before fallback to free.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Widgets -->
-  <div class="category">
-    <div class="category-header">
-      <div class="category-icon blue">&#9638;</div>
-      <span class="category-title blue">Widgets</span>
-    </div>
-    <div class="changes">
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Toll Fees widget. 160+ routes across 10 expressways. Full TRB data in Supabase.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Daily Essentials widget. Rice, electricity, jeepney fare, eggs. 2x2 glass cards. Automated weekly via Edge Function.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Live TV: News5 added as 7th channel. Pinned column prevents cron overwrites.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Fuel Prices: 3-tier data sourcing. DOE official data first, 5 RSS feeds backup, brand websites fallback. Never stale again.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Fuel Prices: responsive font sizing via <code>scale()</code>. Prices fit on one line across all screen sizes.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Market Radar: USD/PHP as hero card with full-width layout. 2x2 grid below with BTC, Gold, PSEi, Brent Oil.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Weather widget: new layout with large temp, high/low arrows, humidity droplet.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Earthquakes: empty state when 0 quakes in 24h. No more showing 6-day-old data as if it's current.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Live TV: green dot only pulses when stream is actually live. No more false "online" indicators.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Alerts: PH-only filtering. No more Myanmar or Indonesia news showing up.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- UI/UX -->
   <div class="category">
     <div class="category-header">
       <div class="category-icon green">&#9673;</div>
@@ -574,131 +466,40 @@ body {
     <div class="changes">
       <div class="change">
         <span class="change-tag tag-new">New</span>
-        <span class="change-text">4-screen onboarding flow for new users.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">App Store review prompt. Soft-ask modal filters bad reviews before triggering native prompt.</span>
+        <span class="change-text">Redesigned Pro subscription page with side-by-side pricing cards.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Hero section: 2-line greeting with name. Greeting pool capped at 2-3 words max. No more wrapping.</span>
+        <span class="change-text">Trial opt-in screen shown after account creation. No more silent trials.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Subscription badge no longer flickers between "Free" and "Trial" on load.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Rate the App now uses native in-app review dialog on iOS.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Nav pill: shows trial countdown, Pro badge, or upgrade prompt based on subscription tier.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Universal button system. Primary, secondary, destructive. Consistent across every screen.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Number Coding suspended state: amber <code>#FF9F0A</code> replaces yellow. Matches app palette.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Alert pills: sizing now matches widget pills. No more inconsistency.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Send Feedback now actually emails <code>daniel@allelicmedia.com</code>. Was opening Privacy Policy.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Rate buttons link to correct App Store / Play Store URLs on both platforms.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">About page: vector logo replaces text logo.</span>
+        <span class="change-text">Removed test crash reporting button from settings.</span>
       </div>
     </div>
   </div>
 
-  <!-- Security -->
   <div class="category">
     <div class="category-header">
-      <div class="category-icon purple">&#9670;</div>
-      <span class="category-title purple">Security &amp; Performance</span>
+      <div class="category-icon blue">&#9638;</div>
+      <span class="category-title blue">Widgets</span>
     </div>
     <div class="changes">
       <div class="change">
-        <span class="change-tag tag-security">Security</span>
-        <span class="change-text">XSS sanitization on Live TV <code>videoId</code> input.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-security">Security</span>
-        <span class="change-text">Removed dangerous "Auth write access" ALL policy on <code>live_tv_streams</code>. Any logged-in user could previously overwrite stream data.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-security">Security</span>
-        <span class="change-text">RLS verified on all 8 Supabase tables. <code>user_profiles</code> restricted to SELECT own data only.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Sentry crash monitoring. JS errors, native crashes, and performance tracking. Source maps for readable stack traces.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">Better Stack uptime monitoring. 4 Edge Function endpoints checked every 3 minutes.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-perf">Perf</span>
-        <span class="change-text"><code>fetchWithTimeout</code> on all external API calls. No more hanging requests.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-perf">Perf</span>
-        <span class="change-text">Stripped 68 <code>console.log</code> statements across 15 files.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-perf">Perf</span>
-        <span class="change-text">Deleted 4 unused components. 396 lines of dead code removed.</span>
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Weather widget now uses your actual GPS location instead of defaulting to Manila.</span>
       </div>
       <div class="change">
         <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">SSO nonce mismatch. Google: enabled skip nonce checks. Apple: proper raw/hashed nonce handling via <code>expo-crypto</code>.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Pulse AI Edge Function 500. Env var name mismatch: code referenced <code>ANTHROPIC_API_KEY</code>, secret was <code>CLAUDE_API_KEY</code>.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Auth -->
-  <div class="category">
-    <div class="category-header">
-      <div class="category-icon gray">&#9679;</div>
-      <span class="category-title gray">Infrastructure</span>
-    </div>
-    <div class="changes">
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text"><code>ENV_VARS.md</code> documenting all 17 environment variables across 10 categories.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-new">New</span>
-        <span class="change-text">ErrorBoundary component. JS crashes show a recovery screen instead of a white screen of death.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">RevenueCat: lazy <code>require()</code> for all 6 calls. Updated to <code>react-native-purchases@9.15.1</code>. No more Expo Go crashes.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Fuel price idempotency guard. Same-date runs are skipped automatically. No more double-apply data corruption.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-change">Change</span>
-        <span class="change-text">Google Sign-In: <code>isGoogleSignInAvailable</code> now actually checks the native module instead of returning true.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Fuel cache key fixed. Pulse AI can now read fuel data when answering price queries.</span>
-      </div>
-      <div class="change">
-        <span class="change-tag tag-fix">Fix</span>
-        <span class="change-text">Region key conflict resolved. Weather and fuel no longer overwrite each other's user region.</span>
+        <span class="change-text">Improved alert categorization. No more false Flood or Fire tags on unrelated articles.</span>
       </div>
     </div>
   </div>
