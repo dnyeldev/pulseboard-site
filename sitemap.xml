@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://pulseboard.today/</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-ph" href="https://pulseboard.today/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pulseboard.today/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pulseboard.today/"/>
+    <image:image>
+      <image:loc>https://pulseboard.today/og-image.png</image:loc>
+      <image:title>PulseBoard — Philippine Intelligence Dashboard</image:title>
+      <image:caption>All-in-one real-time dashboard for the Philippines</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/weather.jpg</image:loc>
+      <image:title>PulseBoard weather widget (PAGASA)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/fuel-prices.jpg</image:loc>
+      <image:title>PulseBoard fuel prices widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/earthquake.jpg</image:loc>
+      <image:title>PulseBoard earthquake widget (PHIVOLCS)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/news.jpg</image:loc>
+      <image:title>PulseBoard Philippine news widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/live-tv.jpg</image:loc>
+      <image:title>PulseBoard live TV widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/alerts.jpg</image:loc>
+      <image:title>PulseBoard active alerts widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/toll-fees.jpg</image:loc>
+      <image:title>PulseBoard toll fees widget (NLEX, SLEX)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/market-radar.jpg</image:loc>
+      <image:title>PulseBoard market radar widget (PSEi)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/number-coding.jpg</image:loc>
+      <image:title>PulseBoard MMDA number coding widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/flight-tracker.jpg</image:loc>
+      <image:title>PulseBoard flight tracker widget</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pulseboard.today/daily-essentials.jpg</image:loc>
+      <image:title>PulseBoard daily essentials widget</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pulseboard.today/changelog.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

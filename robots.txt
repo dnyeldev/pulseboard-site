@@ -1,0 +1,36 @@
+# https://pulseboard.today/robots.txt
+# PulseBoard — Philippine Intelligence Dashboard
+
+User-agent: *
+Allow: /
+
+# Block common AI scrapers that do not respect content licensing.
+# Remove any block below if you want to allow the bot.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://pulseboard.today/sitemap.xml

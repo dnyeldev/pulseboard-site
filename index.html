@@ -2,29 +2,68 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseBoard — Real-Time Philippine Intelligence Dashboard</title>
-  <meta name="description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat. Everything a Filipino needs to know, in one app.">
+
+  <!-- Primary SEO -->
+  <title>PulseBoard — Real-Time Philippine Intelligence Dashboard | Weather, Fuel, News, AI</title>
+  <meta name="description" content="Real-time Philippine dashboard: PAGASA weather, fuel prices, PHIVOLCS earthquakes, Manila toll fees, live TV, breaking news, and AI chat. Free for Filipinos. No ads, no trackers.">
+  <meta name="keywords" content="Philippine dashboard, PAGASA weather app, Philippines fuel prices, PHIVOLCS earthquake, NLEX SLEX toll, MMDA number coding, PSEi market, Philippine news app, live TV Philippines, Pulse AI">
+  <meta name="author" content="PulseBoard">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="application-name" content="PulseBoard">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Geo -->
+  <meta name="geo.region" content="PH">
+  <meta name="geo.placename" content="Manila, Philippines">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://pulseboard.today/">
+  <link rel="alternate" hreflang="en-ph" href="https://pulseboard.today/">
+  <link rel="alternate" hreflang="en" href="https://pulseboard.today/">
+  <link rel="alternate" hreflang="x-default" href="https://pulseboard.today/">
+
+  <!-- Favicons + Manifest -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Theme + PWA -->
   <meta name="theme-color" content="#0A0A0A">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PulseBoard">
+  <meta name="mobile-web-app-capable" content="yes">
 
   <!-- Open Graph -->
+  <meta property="og:site_name" content="PulseBoard">
   <meta property="og:title" content="PulseBoard — Real-Time Philippine Intelligence Dashboard">
-  <meta property="og:description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat. No drama. No bloat. Only what matters.">
+  <meta property="og:description" content="PAGASA weather, fuel prices, PHIVOLCS earthquakes, toll fees, live TV, news, and AI chat — all in one Philippine dashboard. No drama. No bloat. Only what matters.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pulseboard.today">
+  <meta property="og:url" content="https://pulseboard.today/">
+  <meta property="og:locale" content="en_PH">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:image" content="https://pulseboard.today/og-image.png">
+  <meta property="og:image:secure_url" content="https://pulseboard.today/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PulseBoard — Real-time Philippine intelligence dashboard showing weather, fuel prices, news, and AI chat widgets.">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pulseboardph">
+  <meta name="twitter:creator" content="@pulseboardph">
   <meta name="twitter:title" content="PulseBoard — Real-Time Philippine Intelligence Dashboard">
-  <meta name="twitter:description" content="Real-time news, alerts, weather, fuel prices, toll fees, live TV, and AI chat.">
+  <meta name="twitter:description" content="PAGASA weather, fuel prices, earthquakes, toll fees, news, live TV, and AI chat — all in one Philippine dashboard.">
+  <meta name="twitter:image" content="https://pulseboard.today/og-image.png">
+  <meta name="twitter:image:alt" content="PulseBoard — Real-time Philippine intelligence dashboard.">
 
-  <!-- Smart App Banner (iOS) -->
+  <!-- Smart App Banner (iOS) + Google Play -->
   <meta name="apple-itunes-app" content="app-id=6760928177">
+  <meta name="google-play-app" content="app-id=com.pulseboard.app">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,6 +179,142 @@
       transform: scale(1.03);
     }
   </style>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PulseBoard",
+    "url": "https://pulseboard.today/",
+    "logo": "https://pulseboard.today/icon-512.png",
+    "description": "PulseBoard is a real-time intelligence dashboard for the Philippines covering weather, fuel prices, earthquakes, toll fees, news, live TV, and AI chat.",
+    "email": "daniel@allelicmedia.com",
+    "areaServed": { "@type": "Country", "name": "Philippines" },
+    "sameAs": [
+      "https://instagram.com/pulseboardph",
+      "https://facebook.com/PulseBoardPH",
+      "https://apps.apple.com/app/pulseboard/id6760928177",
+      "https://play.google.com/store/apps/details?id=com.pulseboard.app"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: WebSite (with SearchAction) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PulseBoard",
+    "alternateName": "PulseBoard PH",
+    "url": "https://pulseboard.today/",
+    "inLanguage": "en-PH",
+    "publisher": { "@type": "Organization", "name": "PulseBoard" }
+  }
+  </script>
+
+  <!-- Structured Data: MobileApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "PulseBoard — Philippine Intelligence Dashboard",
+    "operatingSystem": "iOS 16.0+, Android 8.0+",
+    "applicationCategory": "NewsApplication",
+    "applicationSubCategory": "Weather, News, Lifestyle",
+    "description": "Real-time Philippine dashboard for weather, fuel prices, earthquakes, toll fees, live TV, breaking news, and AI chat.",
+    "downloadUrl": "https://apps.apple.com/app/pulseboard/id6760928177",
+    "installUrl": "https://play.google.com/store/apps/details?id=com.pulseboard.app",
+    "image": "https://pulseboard.today/og-image.png",
+    "screenshot": [
+      "https://pulseboard.today/weather.jpg",
+      "https://pulseboard.today/fuel-prices.jpg",
+      "https://pulseboard.today/earthquake.jpg",
+      "https://pulseboard.today/news.jpg",
+      "https://pulseboard.today/live-tv.jpg"
+    ],
+    "featureList": [
+      "PAGASA real-time weather and typhoon alerts",
+      "Philippine fuel price tracker (gas, diesel, LPG)",
+      "PHIVOLCS earthquake monitoring",
+      "NLEX / SLEX / Skyway toll fee calculator",
+      "MMDA number coding schedule",
+      "PSEi, forex, and crypto market radar",
+      "Live TV streams (PTV4, ANC, GMA News)",
+      "Breaking news from Rappler, Inquirer, Manila Bulletin",
+      "PH airport flight tracker",
+      "Daily essentials price index",
+      "Pulse AI chat for Philippine queries"
+    ],
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "PulseBoard Pro (Monthly)",
+        "price": "149.00",
+        "priceCurrency": "PHP",
+        "category": "Subscription"
+      },
+      {
+        "@type": "Offer",
+        "name": "PulseBoard Pro (Annual)",
+        "price": "999.00",
+        "priceCurrency": "PHP",
+        "category": "Subscription"
+      }
+    ],
+    "publisher": { "@type": "Organization", "name": "PulseBoard" }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is PulseBoard free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. PulseBoard is free to download and free to use. Most widgets and features are fully unlocked on the free tier. PulseBoard Pro unlocks unlimited widgets, unlimited AI chat, and live TV for ₱149 per month or ₱999 per year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What data does PulseBoard show?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PulseBoard shows real-time PAGASA weather, Philippine fuel prices, PHIVOLCS earthquake activity, NLEX/SLEX toll fees, MMDA number coding, PSEi market data, Philippine airport flight tracking, live TV streams, breaking news, and an AI chat assistant — all curated specifically for the Philippines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PulseBoard have ads or trackers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. PulseBoard is privacy-first with zero ads and zero third-party trackers. We monetize only through PulseBoard Pro subscriptions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which platforms support PulseBoard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PulseBoard runs on iOS 16.0 and newer and on Android 8.0 and newer. Download from the App Store or Google Play."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is PulseBoard different from a news app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Traditional news apps push articles. PulseBoard is anti-social-media and anti-bloat — every widget answers a real question in two seconds, like 'Will it rain today?' or 'Are prices going up this week?' It's built for glanceable intelligence, not doomscrolling."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="selection:bg-brand selection:text-white">
@@ -149,27 +324,28 @@
        ═══════════════════════════════════════════ -->
   <nav class="fixed top-0 w-full z-40 glass-panel border-t-0 border-x-0 border-b border-white/5 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <svg width="28" height="24" viewBox="0 0 540 468" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <a href="/" aria-label="PulseBoard home" class="flex items-center gap-2.5">
+        <svg width="28" height="24" viewBox="0 0 540 468" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M257.938 401.29H257.419H257.362L257.394 401.348L257.938 401.29Z" fill="#FF5236"/>
           <path d="M257.938 401.29L257.394 401.348L241.588 438.34L228.923 467.979H229.167H294.464H299.114H401.197L402.991 467.969C478.823 467.006 540 405.089 540 328.85C540 267.981 501.003 216.242 446.685 197.365L495.191 164.652L495.097 89.2216L417.183 87.2858L360.455 170.021C349.461 164.175 337.638 159.667 325.205 156.712L345.071 53.2716L306.985 18.1906L288.597 0L234.751 53.2716L254.673 157.009C241.465 160.267 228.957 165.282 217.417 171.791L159.699 88.2357H81.598V164.654L165.292 221.099C158.21 232.189 152.584 244.284 148.681 257.12L53.7139 239.181L0 295.19L53.7139 348.593L145.821 331.193C148.776 344.574 153.57 357.272 159.927 369.015L84.1618 420.112L84.1315 443.19L84.0956 443.221L84.1618 467.969L110.133 468L110.152 467.98L161.608 468L276.609 256.801H313.56H401.197C413.251 256.801 424.611 259.775 434.589 265.031C457.471 277.085 473.077 301.141 473.077 328.85C473.077 368.642 446.422 401.348 406.723 401.348H398.106H328.021L258.458 401.29H257.938Z" fill="#FF5236"/>
         </svg>
         <span class="font-display font-semibold text-xl tracking-tight">
           <span class="text-brand">Pulse</span><span class="text-gray-300">Board</span>
         </span>
-      </div>
+      </a>
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
         <a href="#features" class="hover:text-white transition-colors">Features</a>
         <a href="#widgets" class="hover:text-white transition-colors">Widgets</a>
         <a href="#ai" class="hover:text-white transition-colors">Pulse AI</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
         <a href="changelog.html" class="hover:text-white transition-colors">Changelog</a>
       </div>
       <div class="flex items-center gap-2">
-        <a href="https://apps.apple.com/app/pulseboard/id6760928177" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
-          <i class="ph-fill ph-apple-logo text-lg"></i>
+        <a href="https://apps.apple.com/app/pulseboard/id6760928177" aria-label="Download PulseBoard on the App Store" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
+          <i class="ph-fill ph-apple-logo text-lg" aria-hidden="true"></i>
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
-          <i class="ph-fill ph-google-play-logo text-lg"></i>
+        <a href="https://play.google.com/store/apps/details?id=com.pulseboard.app" aria-label="Get PulseBoard on Google Play" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white transition-all bg-surface-raised border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-transparent">
+          <i class="ph-fill ph-google-play-logo text-lg" aria-hidden="true"></i>
         </a>
       </div>
     </div>
@@ -233,45 +409,45 @@
         <!-- Row 1: 3 main widgets -->
         <div class="relative flex justify-center gap-4 md:gap-6 mb-4 md:mb-6">
           <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float -rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src="weather.jpg" alt="Weather" class="w-full h-auto block">
+            <img src="weather.jpg" alt="PulseBoard PAGASA weather widget showing current Philippine conditions and forecast" width="686" height="640" decoding="async" fetchpriority="high" class="w-full h-auto block">
           </div>
           <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 z-10 scale-105 hover:scale-110 transition-transform duration-500">
-            <img src="fuel-prices.jpg" alt="Fuel Prices" class="w-full h-auto block">
+            <img src="fuel-prices.jpg" alt="PulseBoard Philippine fuel price widget with gas, diesel, and LPG rates" width="686" height="680" decoding="async" fetchpriority="high" class="w-full h-auto block">
           </div>
           <div class="w-[30%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src="earthquake.jpg" alt="Earthquakes" class="w-full h-auto block">
+            <img src="earthquake.jpg" alt="PulseBoard PHIVOLCS earthquake widget showing recent seismic activity near the Philippines" width="686" height="680" decoding="async" fetchpriority="high" class="w-full h-auto block">
           </div>
         </div>
 
         <!-- Row 2: 4 widgets -->
         <div class="relative flex justify-center gap-4 md:gap-6 mb-4 md:mb-6">
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d3 -rotate-1 hover:rotate-0 transition-transform duration-500">
-            <img src="news.jpg" alt="News" class="w-full h-auto block">
+            <img src="news.jpg" alt="PulseBoard Philippine news widget with headlines from Rappler, Inquirer, and Manila Bulletin" width="686" height="880" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float rotate-1 hover:rotate-0 transition-transform duration-500">
-            <img src="live-tv.jpg" alt="Live TV" class="w-full h-auto block">
+            <img src="live-tv.jpg" alt="PulseBoard live TV widget streaming PTV4, ANC, and GMA News Philippines" width="686" height="680" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 -rotate-1 hover:rotate-0 transition-transform duration-500">
-            <img src="alerts.jpg" alt="Alerts" class="w-full h-auto block">
+            <img src="alerts.jpg" alt="PulseBoard active alerts widget showing Philippine weather warnings and NDRRMC advisories" width="686" height="800" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-1 hover:rotate-0 transition-transform duration-500">
-            <img src="market-radar.jpg" alt="Market Radar" class="w-full h-auto block">
+            <img src="market-radar.jpg" alt="PulseBoard market radar widget tracking PSEi, forex, and crypto prices" width="686" height="840" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
         </div>
 
         <!-- Row 3: 4 widgets, faded to create depth -->
         <div class="relative flex justify-center gap-4 md:gap-6 opacity-70">
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float -rotate-1">
-            <img src="toll-fees.jpg" alt="Toll Fees" class="w-full h-auto block">
+            <img src="toll-fees.jpg" alt="PulseBoard toll fee widget with NLEX, SLEX, and Skyway rates" width="686" height="760" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d3 rotate-1">
-            <img src="number-coding.jpg" alt="Number Coding" class="w-full h-auto block">
+            <img src="number-coding.jpg" alt="PulseBoard MMDA number coding widget showing today's plate restrictions in Metro Manila" width="686" height="760" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d1 -rotate-1">
-            <img src="flight-tracker.jpg" alt="Flight Tracker" class="w-full h-auto block">
+            <img src="flight-tracker.jpg" alt="PulseBoard flight tracker widget with Philippine airport arrivals and departures" width="686" height="840" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
           <div class="w-[23%] rounded-2xl overflow-hidden bg-[#111] widget-shadow widget-card animate-float-d2 rotate-1">
-            <img src="daily-essentials.jpg" alt="Daily Essentials" class="w-full h-auto block">
+            <img src="daily-essentials.jpg" alt="PulseBoard daily essentials widget tracking rice, electricity, jeepney, and egg prices" width="686" height="620" loading="lazy" decoding="async" class="w-full h-auto block">
           </div>
         </div>
 
@@ -304,7 +480,7 @@
         <!-- Card 1: Weather & Alerts (spans 2) -->
         <div class="md:col-span-2 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden group hover:bg-[#161616] transition-colors duration-500">
           <div class="absolute right-8 bottom-8 w-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl opacity-60 group-hover:opacity-90 transition-opacity hidden md:block">
-            <img src="alerts.jpg" alt="Alerts Widget" class="w-full">
+            <img src="alerts.jpg" alt="PulseBoard active alerts widget — PAGASA, PHIVOLCS, and NDRRMC advisories" width="686" height="800" loading="lazy" decoding="async" class="w-full">
           </div>
           <div class="relative z-10 h-full flex flex-col justify-between max-w-sm">
             <div class="w-12 h-12 rounded-2xl bg-surface border border-white/10 flex items-center justify-center text-white mb-6">
@@ -329,7 +505,7 @@
                 <div class="px-2 py-1 bg-brand/10 text-brand text-[10px] font-bold uppercase rounded">Live prices</div>
               </div>
               <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg mb-4">
-                <img src="fuel-prices.jpg" alt="Fuel Prices" class="w-full">
+                <img src="fuel-prices.jpg" alt="PulseBoard fuel prices widget (gas, diesel, LPG)" width="686" height="680" loading="lazy" decoding="async" class="w-full">
               </div>
             </div>
             <div>
@@ -363,7 +539,7 @@
         <!-- Card 4: Live TV & News (spans 2) -->
         <div class="md:col-span-2 bg-[#121212] rounded-[2rem] border border-white/5 p-8 relative overflow-hidden flex flex-col md:flex-row gap-8 items-center group">
           <div class="relative w-full md:w-1/2 rounded-xl overflow-hidden border border-white/10 shadow-2xl z-10">
-            <img src="live-tv.jpg" alt="Live TV Widget" class="w-full">
+            <img src="live-tv.jpg" alt="PulseBoard live TV widget streaming PH news channels" width="686" height="680" loading="lazy" decoding="async" class="w-full">
             <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-red-600 rounded text-[9px] font-bold uppercase tracking-wider text-white">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
               Live
@@ -401,7 +577,7 @@
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="weather.jpg" alt="Weather" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="weather.jpg" alt="Weather widget preview — PAGASA current conditions and forecast" width="686" height="640" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-sun text-brand"></i>
@@ -412,7 +588,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="news.jpg" alt="News" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="news.jpg" alt="Live news widget preview — headlines from top PH outlets" width="686" height="880" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-newspaper text-brand"></i>
@@ -423,7 +599,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="fuel-prices.jpg" alt="Fuel" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="fuel-prices.jpg" alt="Fuel prices widget preview — gas, diesel, LPG across PH" width="686" height="680" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-gas-pump text-brand"></i>
@@ -434,7 +610,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="earthquake.jpg" alt="Earthquakes" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="earthquake.jpg" alt="Earthquake widget preview — PHIVOLCS seismic activity near PH" width="686" height="680" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-activity text-brand"></i>
@@ -445,7 +621,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="live-tv.jpg" alt="Live TV" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="live-tv.jpg" alt="Live TV widget preview — PH news livestreams" width="686" height="680" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-monitor-play text-brand"></i>
@@ -456,7 +632,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="alerts.jpg" alt="Alerts" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="alerts.jpg" alt="Active alerts widget preview — weather warnings and advisories" width="686" height="800" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-warning text-brand"></i>
@@ -467,7 +643,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="toll-fees.jpg" alt="Toll Fees" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="toll-fees.jpg" alt="Toll fees widget preview — NLEX, SLEX, Skyway rates" width="686" height="760" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-car text-brand"></i>
@@ -478,7 +654,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="market-radar.jpg" alt="Market Radar" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="market-radar.jpg" alt="Market radar widget preview — PSEi, forex, crypto" width="686" height="840" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-trend-up text-brand"></i>
@@ -489,7 +665,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="number-coding.jpg" alt="Number Coding" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="number-coding.jpg" alt="MMDA number coding widget preview — plate restrictions today" width="686" height="760" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-hash text-brand"></i>
@@ -500,7 +676,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="flight-tracker.jpg" alt="Flight Tracker" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="flight-tracker.jpg" alt="Flight tracker widget preview — PH airport arrivals and departures" width="686" height="840" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-airplane text-brand"></i>
@@ -511,7 +687,7 @@
         </div>
 
         <div class="group bg-[#111] rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 transition-colors">
-          <img src="daily-essentials.jpg" alt="Daily Essentials" class="w-full aspect-[4/3] object-cover bg-[#111]">
+          <img src="daily-essentials.jpg" alt="Daily essentials widget preview — rice, electricity, jeepney, egg prices" width="686" height="620" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover bg-[#111]">
           <div class="p-4">
             <div class="flex items-center gap-2 mb-1">
               <i class="ph ph-shopping-cart text-brand"></i>
@@ -555,6 +731,61 @@
           <span class="font-display text-5xl md:text-6xl font-semibold text-white tracking-tighter mb-2">24<span class="text-brand">/</span>7</span>
           <span class="text-sm text-gray-500 font-medium uppercase tracking-widest">Always On</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ -->
+  <section id="faq" aria-labelledby="faq-title" class="py-24 lg:py-32 bg-black border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 id="faq-title" class="font-display text-4xl lg:text-5xl font-semibold tracking-tight mb-4">Frequently asked</h2>
+        <p class="text-gray-400 text-lg">Short answers. No marketing fluff.</p>
+      </div>
+
+      <div class="space-y-3">
+        <details class="group rounded-2xl bg-[#111] border border-white/5 p-6 open:border-brand/30 transition-colors">
+          <summary class="font-display font-semibold text-lg cursor-pointer flex items-center justify-between list-none">
+            Is PulseBoard free to use?
+            <i class="ph ph-plus text-gray-500 group-open:rotate-45 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="mt-4 text-gray-400 leading-relaxed text-sm">Yes. PulseBoard is free to download and free to use. Most widgets and features are fully unlocked on the free tier. PulseBoard Pro unlocks unlimited widgets, unlimited AI chat, and live TV for ₱149 per month or ₱999 per year.</p>
+        </details>
+
+        <details class="group rounded-2xl bg-[#111] border border-white/5 p-6 open:border-brand/30 transition-colors">
+          <summary class="font-display font-semibold text-lg cursor-pointer flex items-center justify-between list-none">
+            What data does PulseBoard show?
+            <i class="ph ph-plus text-gray-500 group-open:rotate-45 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="mt-4 text-gray-400 leading-relaxed text-sm">Real-time PAGASA weather, Philippine fuel prices, PHIVOLCS earthquake activity, NLEX/SLEX toll fees, MMDA number coding, PSEi market data, Philippine airport flight tracking, live TV streams, breaking news, and an AI chat assistant — all curated specifically for the Philippines.</p>
+        </details>
+
+        <details class="group rounded-2xl bg-[#111] border border-white/5 p-6 open:border-brand/30 transition-colors">
+          <summary class="font-display font-semibold text-lg cursor-pointer flex items-center justify-between list-none">
+            Does PulseBoard have ads or trackers?
+            <i class="ph ph-plus text-gray-500 group-open:rotate-45 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="mt-4 text-gray-400 leading-relaxed text-sm">No. PulseBoard is privacy-first with zero ads and zero third-party trackers. We monetize only through PulseBoard Pro subscriptions.</p>
+        </details>
+
+        <details class="group rounded-2xl bg-[#111] border border-white/5 p-6 open:border-brand/30 transition-colors">
+          <summary class="font-display font-semibold text-lg cursor-pointer flex items-center justify-between list-none">
+            Which platforms support PulseBoard?
+            <i class="ph ph-plus text-gray-500 group-open:rotate-45 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="mt-4 text-gray-400 leading-relaxed text-sm">PulseBoard runs on iOS 16.0 and newer and on Android 8.0 and newer. Download from the App Store or Google Play.</p>
+        </details>
+
+        <details class="group rounded-2xl bg-[#111] border border-white/5 p-6 open:border-brand/30 transition-colors">
+          <summary class="font-display font-semibold text-lg cursor-pointer flex items-center justify-between list-none">
+            How is PulseBoard different from a news app?
+            <i class="ph ph-plus text-gray-500 group-open:rotate-45 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="mt-4 text-gray-400 leading-relaxed text-sm">Traditional news apps push articles. PulseBoard is anti-social-media and anti-bloat — every widget answers a real question in two seconds, like "Will it rain today?" or "Are prices going up this week?" It's built for glanceable intelligence, not doomscrolling.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -627,6 +858,7 @@
             <a href="#features" class="text-sm text-gray-500 hover:text-brand transition-colors">Features</a>
             <a href="#widgets" class="text-sm text-gray-500 hover:text-brand transition-colors">Widgets</a>
             <a href="#ai" class="text-sm text-gray-500 hover:text-brand transition-colors">Pulse AI</a>
+            <a href="#faq" class="text-sm text-gray-500 hover:text-brand transition-colors">FAQ</a>
             <a href="changelog.html" class="text-sm text-gray-500 hover:text-brand transition-colors">Changelog</a>
           </div>
           <div class="flex flex-col gap-3">

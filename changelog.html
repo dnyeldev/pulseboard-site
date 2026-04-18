@@ -404,7 +404,8 @@ body {
 
 <!-- Version nav -->
 <div class="version-nav">
-  <a href="#v130" class="version-pill active">v1.3.0</a>
+  <a href="#v131" class="version-pill active">v1.3.1</a>
+  <a href="#v130" class="version-pill">v1.3.0</a>
   <a href="#v120" class="version-pill">v1.2.0</a>
   <a href="#v112" class="version-pill">v1.1.2</a>
   <a href="#v110" class="version-pill">v1.1.0</a>
@@ -413,6 +414,50 @@ body {
   <a href="#v101" class="version-pill">v1.0.1</a>
   <a href="#v100" class="version-pill">v1.0.0</a>
 </div>
+
+<!-- v1.3.1 -->
+<section class="patch" id="v131">
+  <div class="patch-header">
+    <span class="patch-version">v1.3.1</span>
+    <span class="patch-date">April 18, 2026</span>
+  </div>
+  <p class="patch-codename">Hotfix: password reset email + iOS sign-in link.</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--green);"></div>
+      <span class="stat-value">0</span>
+      <span class="stat-label">new</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--amber);"></div>
+      <span class="stat-value">0</span>
+      <span class="stat-label">improvements</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background: var(--blue);"></div>
+      <span class="stat-value">2</span>
+      <span class="stat-label">fixes</span>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header">
+      <div class="category-icon blue">&#9638;</div>
+      <span class="category-title blue">Fixes</span>
+    </div>
+    <div class="changes">
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Password reset emails were delivering a tap-to-reset link instead of the new 6-digit code. The app had already moved to code-based reset in 1.3.0, but the email template was still the old link version &mdash; so tapping the button went nowhere useful. Template swapped out server-side; no app update required for this half, but shipping it in 1.3.1 locks the paired behaviour together.</span>
+      </div>
+      <div class="change">
+        <span class="change-tag tag-fix">Fix</span>
+        <span class="change-text">Magic link sign-in on iOS failed with &ldquo;Safari cannot open the page because the address is invalid.&rdquo; The <code>pulseboard://</code> URL scheme was not registered in the iOS binary because an explicit <code>CFBundleURLTypes</code> entry for Google Sign-In was clobbering Expo&rsquo;s default auto-registration. Both schemes now ship together in the Info.plist.</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- v1.3.0 -->
 <section class="patch" id="v130">
